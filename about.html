@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Shiny Zhang</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#FFFDFD;--ink:#0A0A0A;--y:#CCFF00;--p:#FF2787;--g:#00FF85;--mono:'DM Mono',monospace;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
+    #cur{position:fixed;width:12px;height:12px;background:var(--ink);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:9999;transition:width .2s,height .2s;mix-blend-mode:difference;}
+    #cur.big{width:48px;height:48px;}
+    #prog{position:fixed;top:0;left:0;height:2px;background:var(--g);z-index:9998;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;}
+    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none;}
+    .nav-pills{display:flex;gap:8px;}
+    .pill{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s;}
+    .pill:hover{transform:scale(1.06);}
+    .pill-y{background:var(--y);color:var(--ink);}
+    .pill-p{background:var(--p);color:#fff;}
+    .pill-g{background:var(--g);color:var(--ink);}
+
+    /* Hero */
+    .hero{padding:140px 32px 0;}
+    .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:end;padding-bottom:48px;border-bottom:1px solid rgba(10,10,10,.12);}
+    .hero-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3.5rem,12vw,14rem);letter-spacing:-.04em;line-height:.88;}
+    .hero-right{display:flex;flex-direction:column;justify-content:flex-end;gap:20px;padding-bottom:8px;}
+    .mono-label{font-family:var(--mono);font-size:.6rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+    .hero-title{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(1rem,2vw,1.5rem);letter-spacing:-.02em;line-height:1.2;}
+    .hero-desc{font-family:'DM Sans';font-size:.9rem;line-height:1.8;color:#555;max-width:380px;}
+    .avail{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.65rem;}
+    .avail-dot{width:7px;height:7px;background:var(--g);border-radius:50%;animation:pulse 1.4s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    .btn-dark{display:inline-block;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;background:var(--ink);color:var(--bg);text-decoration:none;transition:background .15s;}
+    .btn-dark:hover{background:var(--p);}
+    .btn-outline{display:inline-block;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:12px 24px;border:1px solid rgba(10,10,10,.25);color:var(--ink);text-decoration:none;transition:all .15s;}
+    .btn-outline:hover{background:var(--ink);color:var(--bg);}
+
+    /* Neural strip */
+    #neural2{display:block;width:100%;height:100px;border-top:1px solid rgba(10,10,10,.08);border-bottom:1px solid rgba(10,10,10,.08);}
+
+    /* Bio section */
+    .bio-section{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(10,10,10,.12);}
+    .bio-left{padding:64px 32px;border-right:1px solid rgba(10,10,10,.12);}
+    .bio-right{padding:64px 32px;background:rgba(10,10,10,.02);}
+    .quote{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.4rem,3vw,2.6rem);letter-spacing:-.03em;line-height:1.1;max-width:440px;}
+    .ul-y{text-decoration:underline;text-decoration-color:var(--y);text-underline-offset:5px;}
+    .ul-p{text-decoration:underline;text-decoration-color:var(--p);text-underline-offset:5px;}
+    .body-text{font-family:'DM Sans';font-size:.9rem;line-height:1.85;color:#555;margin-top:20px;max-width:420px;}
+    .ai-workflow{display:flex;flex-direction:column;gap:12px;}
+    .ai-step{padding:16px;border:1px solid rgba(10,10,10,.1);display:flex;gap:14px;align-items:flex-start;}
+    .ai-step-num{font-family:var(--mono);font-size:.6rem;padding:3px 7px;white-space:nowrap;}
+    .ai-step-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;margin-bottom:5px;}
+    .ai-step-body{font-family:'DM Sans';font-size:.78rem;color:#666;line-height:1.7;}
+
+    /* Principles */
+    .principles{border-bottom:1px solid rgba(10,10,10,.12);}
+    .section-hdr{padding:56px 32px 40px;border-bottom:1px solid rgba(10,10,10,.08);}
+    .section-hdr h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.5rem,7vw,7rem);letter-spacing:-.04em;line-height:.9;}
+    .principles-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+    .principle{padding:36px 32px;border-right:1px solid rgba(10,10,10,.1);border-bottom:1px solid rgba(10,10,10,.1);}
+    .principle:nth-child(3n){border-right:none;}
+    .p-num{font-family:var(--mono);font-size:.6rem;color:#aaa;margin-bottom:14px;}
+    .p-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;letter-spacing:-.02em;margin-bottom:10px;}
+    .p-body{font-family:'DM Sans';font-size:.83rem;line-height:1.75;color:#555;}
+
+    /* Skills */
+    .skills-section{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(10,10,10,.12);}
+    .skills-left{padding:64px 32px;border-right:1px solid rgba(10,10,10,.12);}
+    .skills-right{padding:64px 32px;}
+    .mono-label-sm{font-family:var(--mono);font-size:.6rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px;}
+    .skill-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid rgba(10,10,10,.07);}
+    .skill-row:last-child{border-bottom:none;}
+    .skill-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;}
+    .skill-pct{font-family:var(--mono);font-size:.62rem;color:#888;}
+    .skill-bar-wrap{width:100%;height:1.5px;background:rgba(10,10,10,.1);margin-top:7px;}
+    .skill-bar{height:100%;background:var(--ink);width:0;transition:width 1.2s ease;}
+    .skill-bar.on{width:var(--w);}
+    .tools-wrap{display:flex;flex-wrap:wrap;gap:7px;}
+    .tool{font-family:var(--mono);font-size:.62rem;border:1px solid rgba(10,10,10,.18);padding:6px 13px;letter-spacing:.03em;transition:background .15s,color .15s,transform .12s;}
+    .tool:hover{background:var(--ink);color:var(--bg);transform:translateY(-2px);cursor:default;}
+    .lang-row{display:flex;gap:10px;margin-top:32px;}
+    .lang-chip{font-family:var(--mono);font-size:.6rem;padding:6px 14px;border:1px solid rgba(10,10,10,.18);}
+    .lang-chip span{color:#888;margin-left:4px;}
+
+    /* Experience */
+    .exp-section{border-bottom:1px solid rgba(10,10,10,.12);}
+    .exp-item{display:grid;grid-template-columns:220px 1fr;border-bottom:1px solid rgba(10,10,10,.08);transition:background .2s;}
+    .exp-item:hover{background:rgba(10,10,10,.02);}
+    .exp-year{padding:32px;font-family:var(--mono);font-size:.62rem;color:#888;letter-spacing:.06em;border-right:1px solid rgba(10,10,10,.08);line-height:1.8;}
+    .exp-content{padding:32px;}
+    .exp-role{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.02em;margin-bottom:4px;}
+    .exp-co{font-family:'Syne',sans-serif;font-weight:500;font-size:.88rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+    .exp-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+    .exp-body{font-family:'DM Sans';font-size:.85rem;line-height:1.8;color:#555;max-width:580px;}
+    .exp-projects{margin-top:14px;display:flex;flex-direction:column;gap:5px;}
+    .exp-project{font-family:var(--mono);font-size:.62rem;color:#888;display:flex;align-items:center;gap:8px;}
+    .exp-project::before{content:'→';color:var(--p);}
+    .exp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;}
+    .exp-tag{font-family:var(--mono);font-size:.58rem;border:1px solid rgba(10,10,10,.13);padding:3px 8px;color:#666;}
+
+    /* Education & Recognition */
+    .edu-rec{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid rgba(10,10,10,.12);}
+    .edu-col{padding:56px 32px;border-right:1px solid rgba(10,10,10,.12);}
+    .rec-col{padding:56px 32px;}
+    .edu-item{padding:20px 0;border-bottom:1px solid rgba(10,10,10,.08);}
+    .edu-item:last-child{border-bottom:none;}
+    .edu-year{font-family:var(--mono);font-size:.6rem;color:#aaa;margin-bottom:8px;}
+    .edu-degree{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;margin-bottom:3px;}
+    .edu-school{font-family:var(--mono);font-size:.65rem;color:#888;}
+    .rec-item{padding:20px 0;border-bottom:1px solid rgba(10,10,10,.08);display:flex;gap:14px;align-items:flex-start;}
+    .rec-item:last-child{border-bottom:none;}
+    .rec-accent{width:3px;height:40px;flex-shrink:0;margin-top:3px;}
+    .rec-title{font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;margin-bottom:3px;}
+    .rec-detail{font-family:var(--mono);font-size:.6rem;color:#888;}
+
+    /* Contact */
+    .contact{background:var(--ink);color:var(--bg);}
+    .contact-inner{padding:80px 32px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+    .contact-big{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,9rem);letter-spacing:-.04em;line-height:.88;margin-bottom:28px;}
+    .contact-sub{font-family:'DM Sans';font-size:.9rem;line-height:1.8;color:rgba(232,230,220,.45);max-width:360px;}
+    .contact-email{display:inline-block;font-family:'Syne',sans-serif;font-weight:700;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:13px 26px;border:1px solid rgba(232,230,220,.25);color:var(--bg);text-decoration:none;margin-top:28px;transition:background .2s,border-color .2s;}
+    .contact-email:hover{background:var(--p);border-color:var(--p);}
+    .contact-link{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(232,230,220,.07);text-decoration:none;color:var(--bg);transition:padding-left .18s;}
+    .contact-link:hover{padding-left:8px;}
+    .cl-name{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;}
+    .cl-handle{font-family:var(--mono);font-size:.58rem;color:rgba(232,230,220,.35);}
+    .cl-arr{font-family:var(--mono);font-size:.7rem;color:rgba(232,230,220,.25);}
+
+    footer{border-top:1px solid rgba(232,230,220,.08);background:var(--ink);padding:32px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;}
+    .f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--bg);}
+    .f-links{display:flex;gap:24px;justify-content:center;}
+    .f-links a{font-family:var(--mono);font-size:.65rem;color:rgba(232,230,220,.35);text-decoration:none;text-transform:uppercase;letter-spacing:.08em;transition:color .15s;}
+    .f-links a:hover{color:var(--bg);}
+    .f-copy{grid-column:1/-1;text-align:center;font-family:var(--mono);font-size:.6rem;color:rgba(232,230,220,.18);margin-top:24px;padding-top:24px;border-top:1px solid rgba(232,230,220,.05);}
+
+    @media(prefers-reduced-motion:no-preference){.rev{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease;}.rev.on{opacity:1;transform:none;}}
+    @media(max-width:900px){
+      .hero-grid,.bio-section,.skills-section,.contact-inner,.edu-rec{grid-template-columns:1fr;}
+      .bio-left,.skills-left,.edu-col{border-right:none;border-bottom:1px solid rgba(10,10,10,.12);}
+      .principles-grid{grid-template-columns:1fr 1fr;}
+      .principle:nth-child(3n){border-right:1px solid rgba(10,10,10,.1);}
+      .principle:nth-child(2n){border-right:none;}
+      .exp-item{grid-template-columns:1fr;}
+      .exp-year{border-right:none;border-bottom:1px solid rgba(10,10,10,.08);padding:20px 32px 10px;}
+      footer{grid-template-columns:1fr;text-align:center;}
+      .f-links{justify-content:center;}
+    }
+    @media(max-width:600px){
+      nav{padding:16px 20px;}
+      .principles-grid{grid-template-columns:1fr;}
+      .principle:nth-child(3n){border-right:none;}
+    }
+  </style>
+</head>
+<body>
+  <div id="cur"></div>
+  <div id="prog"></div>
+
+  <nav>
+    <a href="index.html" class="nav-logo">SZ.</a>
+    <div class="nav-pills">
+      <a href="index.html" class="pill pill-y">Home</a>
+      <a href="work.html" class="pill pill-p">Work</a>
+      <a href="about.html" class="pill pill-g">About</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-grid rev">
+      <div>
+        <div class="hero-name">SHINY<br />ZHANG.</div>
+      </div>
+      <div class="hero-right">
+        <div>
+          <div class="mono-label">Role</div>
+          <div class="hero-title">AI-driven Senior Product Designer</div>
+        </div>
+        <div>
+          <div class="mono-label">Based in</div>
+          <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:1rem;margin-top:2px;">Melbourne, Australia</div>
+        </div>
+        <div class="hero-desc">
+          8+ years delivering digital products across fintech, healthcare, enterprise systems, Web3, and consumer platforms. Experienced in consultancy and agile environments — specialising in scalable UX, design systems, and cross-functional product delivery.
+        </div>
+        <div class="avail">
+          <div class="avail-dot"></div>
+          <span>Open to new opportunities</span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="mailto:shiny910920@gmail.com" class="btn-dark">Get in touch</a>
+          <a href="#" class="btn-outline">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Neural canvas -->
+  <canvas id="neural2"></canvas>
+
+  <!-- Bio + AI Workflow -->
+  <section class="bio-section rev">
+    <div class="bio-left">
+      <div style="font-family:var(--mono);font-size:.6rem;color:#888;letter-spacing:.1em;margin-bottom:24px;">// PHILOSOPHY.TXT</div>
+      <p class="quote">
+        "Design is the space between <span class="ul-y">human behaviour</span> and <span class="ul-p">business intent</span> — my job is to make that space invisible."
+      </p>
+      <p class="body-text">
+        I've led and contributed to 20+ shipped products across startups, enterprise clients, and premium brands — collaborating closely with product, engineering, and business teams throughout the full product lifecycle.
+      </p>
+      <p class="body-text">
+        Strong product thinking with experience balancing user needs, business goals, and technical feasibility across complex digital products. I bring the same rigour to every engagement: deep research, systems thinking, and obsessive attention to craft.
+      </p>
+    </div>
+    <div class="bio-right">
+      <div style="font-family:var(--mono);font-size:.6rem;color:#888;letter-spacing:.1em;margin-bottom:24px;">// AI_WORKFLOW.JSON</div>
+      <div class="ai-workflow">
+        <div class="ai-step">
+          <div class="ai-step-num" style="background:var(--ink);color:var(--y);">01</div>
+          <div>
+            <div class="ai-step-title">AI-Assisted Research Synthesis</div>
+            <div class="ai-step-body">Using LLMs to synthesise user interview transcripts, surface hidden patterns, and generate research hypotheses faster than traditional methods allow.</div>
+          </div>
+        </div>
+        <div class="ai-step">
+          <div class="ai-step-num" style="background:var(--ink);color:var(--p);">02</div>
+          <div>
+            <div class="ai-step-title">Generative Concept Exploration</div>
+            <div class="ai-step-body">Integrating Midjourney and generative tools into rapid concept exploration for visual ideation — then applying design judgement to curate the strongest directions.</div>
+          </div>
+        </div>
+        <div class="ai-step">
+          <div class="ai-step-num" style="background:var(--ink);color:var(--g);">03</div>
+          <div>
+            <div class="ai-step-title">Scalable Systems Delivery</div>
+            <div class="ai-step-body">Building cross-platform design systems and interaction patterns that scale across product teams, with documented standards and mentorship baked in.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Principles -->
+  <section class="principles rev">
+    <div class="section-hdr">
+      <h2>Design<br />Principles.</h2>
+    </div>
+    <div class="principles-grid">
+      <div class="principle">
+        <div class="p-num">01 —</div>
+        <div class="p-title">People first, always</div>
+        <div class="p-body">Every decision starts with deep empathy and real behavioural data. I validate assumptions with users before building, not after.</div>
+      </div>
+      <div class="principle">
+        <div class="p-num">02 —</div>
+        <div class="p-title">Systems over screens</div>
+        <div class="p-body">Great products are built on reusable systems. I design components, patterns, and tokens that scale without manual intervention.</div>
+      </div>
+      <div class="principle">
+        <div class="p-num">03 —</div>
+        <div class="p-title">Clarity over complexity</div>
+        <div class="p-body">The best interface disappears. If users notice the UI, it's competing with the task. Simplicity is the hardest skill to master.</div>
+      </div>
+      <div class="principle">
+        <div class="p-num">04 —</div>
+        <div class="p-title">AI as an amplifier</div>
+        <div class="p-body">AI doesn't replace design thinking — it amplifies it. I use AI tools to accelerate research, exploration, and delivery without sacrificing quality.</div>
+      </div>
+      <div class="principle">
+        <div class="p-num">05 —</div>
+        <div class="p-title">Agile, not chaotic</div>
+        <div class="p-body">I thrive in fast-moving teams. Strong product thinking balances user needs, business goals, and technical feasibility across complex deliveries.</div>
+      </div>
+      <div class="principle">
+        <div class="p-num">06 —</div>
+        <div class="p-title">Craft at every scale</div>
+        <div class="p-body">From a single micro-interaction to an enterprise platform — details signal trust. Pixel precision and timing are non-negotiable.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills & Tools -->
+  <section class="skills-section rev">
+    <div class="skills-left">
+      <div class="mono-label-sm">Expertise</div>
+      <div>
+        <div class="skill-row">
+          <div><div class="skill-name">Product Strategy &amp; UX Research</div><div class="skill-bar-wrap"><div class="skill-bar" style="--w:93%"></div></div></div>
+          <div class="skill-pct">93%</div>
+        </div>
+        <div class="skill-row">
+          <div><div class="skill-name">Design Systems</div><div class="skill-bar-wrap"><div class="skill-bar" style="--w:95%"></div></div></div>
+          <div class="skill-pct">95%</div>
+        </div>
+        <div class="skill-row">
+          <div><div class="skill-name">Enterprise UX &amp; Agile Delivery</div><div class="skill-bar-wrap"><div class="skill-bar" style="--w:90%"></div></div></div>
+          <div class="skill-pct">90%</div>
+        </div>
+        <div class="skill-row">
+          <div><div class="skill-name">Interaction Design &amp; Prototyping</div><div class="skill-bar-wrap"><div class="skill-bar" style="--w:92%"></div></div></div>
+          <div class="skill-pct">92%</div>
+        </div>
+        <div class="skill-row">
+          <div><div class="skill-name">AI-Augmented Workflows</div><div class="skill-bar-wrap"><div class="skill-bar" style="--w:88%"></div></div></div>
+          <div class="skill-pct">88%</div>
+        </div>
+        <div class="skill-row">
+          <div><div class="skill-name">Workshop Facilitation</div><div class="skill-bar-wrap"><div class="skill-bar" style="--w:85%"></div></div></div>
+          <div class="skill-pct">85%</div>
+        </div>
+      </div>
+
+      <!-- Languages -->
+      <div style="margin-top:40px;">
+        <div class="mono-label-sm">Languages</div>
+        <div class="lang-row">
+          <div class="lang-chip">Mandarin<span>Native</span></div>
+          <div class="lang-chip">English<span>Professional</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-right">
+      <div class="mono-label-sm">Toolbox</div>
+      <div class="tools-wrap">
+        <div class="tool">Figma</div>
+        <div class="tool">FigJam</div>
+        <div class="tool">Sketch</div>
+        <div class="tool">Lottie Labs</div>
+        <div class="tool">Midjourney</div>
+        <div class="tool">Miro</div>
+        <div class="tool">Webflow</div>
+        <div class="tool">Adobe Creative Suite</div>
+        <div class="tool">Blender</div>
+        <div class="tool">Cinema 4D</div>
+        <div class="tool">ProtoPie</div>
+        <div class="tool">After Effects</div>
+        <div class="tool">Storybook</div>
+        <div class="tool">Slack</div>
+        <div class="tool">Google Workspace</div>
+        <div class="tool">Jira</div>
+        <div class="tool">Notion</div>
+        <div class="tool">ChatGPT</div>
+        <div class="tool">Claude</div>
+        <div class="tool">Runway ML</div>
+      </div>
+
+      <div style="margin-top:40px;padding:20px;border:1px solid rgba(10,10,10,.1);">
+        <div style="font-family:var(--mono);font-size:.6rem;color:#888;margin-bottom:14px;letter-spacing:.06em;">CURRENTLY EXPLORING</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:5px;height:5px;background:var(--y);border-radius:50%;"></div><span style="font-family:'DM Sans';font-size:.83rem;color:#444;">AI-driven design generation pipelines</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:5px;height:5px;background:var(--p);border-radius:50%;"></div><span style="font-family:'DM Sans';font-size:.83rem;color:#444;">Spatial design for AR/XR platforms</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:5px;height:5px;background:var(--g);border-radius:50%;"></div><span style="font-family:'DM Sans';font-size:.83rem;color:#444;">Generative motion systems with Lottie</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="exp-section rev">
+    <div class="section-hdr">
+      <h2>Experience.</h2>
+    </div>
+
+    <!-- DreamWalk — current -->
+    <div class="exp-item">
+      <div class="exp-year">
+        JAN 2022<br />— PRESENT<br /><br />Melbourne, AU
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Senior Product Designer</div>
+        <div class="exp-co"><div class="exp-dot" style="background:var(--y)"></div>DreamWalk App Development</div>
+        <div class="exp-body">Led UX/UI delivery across mobile and web products in agile environments. Built scalable design systems and cross-platform interaction patterns. Collaborated with stakeholders and engineering teams from concept to delivery. Integrated AI-assisted workflows into rapid concept exploration and visual ideation. Mentored junior designers and improved internal design workflows.</div>
+        <div class="exp-projects">
+          <div class="exp-project">Porsche — Mobile Experience Platform</div>
+          <div class="exp-project">B&D — Smart Garage &amp; Connected Platform</div>
+          <div class="exp-project">ZED Picks — Web3 Virtual Racing &amp; Gaming</div>
+        </div>
+        <div class="exp-tags">
+          <div class="exp-tag">Design Systems</div>
+          <div class="exp-tag">Agile Delivery</div>
+          <div class="exp-tag">AI Workflows</div>
+          <div class="exp-tag">Mentorship</div>
+          <div class="exp-tag">Cross-Platform</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deloitte / NAB -->
+    <div class="exp-item">
+      <div class="exp-year">
+        DEC 2025<br />— FEB 2026<br /><br />Melbourne, AU
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Contract Senior Product Designer</div>
+        <div class="exp-co"><div class="exp-dot" style="background:var(--p)"></div>Deloitte Digital × National Australia Bank</div>
+        <div class="exp-body">Collaborated with UX, product, and engineering teams in agile delivery environments. Supported scalable mobile design systems and accessibility-aligned UI patterns. Contributed to onboarding, servicing, and authenticated customer journeys across banking experiences.</div>
+        <div class="exp-projects">
+          <div class="exp-project">NAB Mobile Banking — Onboarding &amp; Servicing Journeys</div>
+          <div class="exp-project">Accessibility-aligned Design System Components</div>
+        </div>
+        <div class="exp-tags">
+          <div class="exp-tag">Enterprise UX</div>
+          <div class="exp-tag">Banking</div>
+          <div class="exp-tag">Accessibility</div>
+          <div class="exp-tag">Agile</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payo -->
+    <div class="exp-item">
+      <div class="exp-year">
+        JUN 2022<br />— DEC 2022<br /><br />Melbourne, AU
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">Senior Product Designer</div>
+        <div class="exp-co"><div class="exp-dot" style="background:var(--g)"></div>Payo App</div>
+        <div class="exp-body">Enhanced checkout workflows and mobile payment experiences for improved usability and customer conversion across the Payo payments platform.</div>
+        <div class="exp-projects">
+          <div class="exp-project">Checkout UX Optimisation &amp; Payment Flow Redesign</div>
+        </div>
+        <div class="exp-tags">
+          <div class="exp-tag">Fintech</div>
+          <div class="exp-tag">Payments UX</div>
+          <div class="exp-tag">Mobile</div>
+          <div class="exp-tag">Conversion Optimisation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- YepHome AI -->
+    <div class="exp-item">
+      <div class="exp-year">
+        JUL 2021<br />— DEC 2021<br /><br />Melbourne, AU
+      </div>
+      <div class="exp-content">
+        <div class="exp-role">UX/UI Designer</div>
+        <div class="exp-co"><div class="exp-dot" style="background:#aaa"></div>YepHome AI</div>
+        <div class="exp-body">Led end-to-end product design for an online property transaction platform. Built scalable internal portal design systems and reusable UI components. Collaborated with cross-functional teams on digital campaign experiences and customer engagement optimisation.</div>
+        <div class="exp-projects">
+          <div class="exp-project">Property Transaction Platform — End-to-end Design</div>
+          <div class="exp-project">Internal Portal Design System</div>
+        </div>
+        <div class="exp-tags">
+          <div class="exp-tag">PropTech</div>
+          <div class="exp-tag">AI Product</div>
+          <div class="exp-tag">End-to-End UX</div>
+          <div class="exp-tag">Design System</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education & Recognition -->
+  <section class="edu-rec rev">
+    <div class="edu-col">
+      <div class="mono-label-sm">Education</div>
+      <div class="edu-item">
+        <div class="edu-year">2015 — 2016</div>
+        <div class="edu-degree">Master of Multimedia Design</div>
+        <div class="edu-school">Monash University · Melbourne, Australia</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2010 — 2014</div>
+        <div class="edu-degree">Bachelor of Visual Design</div>
+        <div class="edu-school">Renmin University of China · Beijing</div>
+      </div>
+    </div>
+    <div class="rec-col">
+      <div class="mono-label-sm">Industries &amp; Domains</div>
+      <div class="rec-item">
+        <div class="rec-accent" style="background:var(--y)"></div>
+        <div><div class="rec-title">Fintech &amp; Banking</div><div class="rec-detail">NAB · Payo · Payment platforms</div></div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-accent" style="background:var(--p)"></div>
+        <div><div class="rec-title">Web3 &amp; Gaming</div><div class="rec-detail">ZED Picks · NFT platforms · Virtual racing</div></div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-accent" style="background:var(--g)"></div>
+        <div><div class="rec-title">Premium Brand &amp; Automotive</div><div class="rec-detail">Porsche · B&D · Connected experiences</div></div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-accent" style="background:#888"></div>
+        <div><div class="rec-title">PropTech &amp; AI</div><div class="rec-detail">YepHome AI · Property transactions</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="contact rev">
+    <div class="contact-inner">
+      <div>
+        <div style="font-family:var(--mono);font-size:.6rem;color:rgba(232,230,220,.28);letter-spacing:.1em;margin-bottom:24px;">// CONNECT</div>
+        <div class="contact-big">Let's<br />build.</div>
+        <p class="contact-sub">Open to new full-time roles, freelance projects, and consulting. Based in Melbourne — available globally. I respond within 24 hours.</p>
+        <a href="mailto:shiny910920@gmail.com" class="contact-email">shiny910920@gmail.com</a>
+        <div style="margin-top:10px;font-family:var(--mono);font-size:.62rem;color:rgba(232,230,220,.28);">0451 883 048</div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:.6rem;color:rgba(232,230,220,.28);letter-spacing:.1em;margin-bottom:8px;">FIND ME ON —</div>
+        <a href="#" class="contact-link">
+          <div><div class="cl-name">LinkedIn</div><div class="cl-handle">linkedin.com/in/shinyzhang</div></div>
+          <div class="cl-arr">↗</div>
+        </a>
+        <a href="#" class="contact-link">
+          <div><div class="cl-name">Behance</div><div class="cl-handle">behance.net/shinyzhang</div></div>
+          <div class="cl-arr">↗</div>
+        </a>
+        <a href="#" class="contact-link">
+          <div><div class="cl-name">Dribbble</div><div class="cl-handle">dribbble.com/shinyzhang</div></div>
+          <div class="cl-arr">↗</div>
+        </a>
+        <a href="#" class="contact-link">
+          <div><div class="cl-name">Read.cv</div><div class="cl-handle">read.cv/shinyzhang</div></div>
+          <div class="cl-arr">↗</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="f-logo">SZ.</div>
+    <div class="f-links">
+      <a href="index.html">Home</a>
+      <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="f-copy">© 2025 Shiny Zhang. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const cur=document.getElementById('cur');
+    document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';});
+    document.querySelectorAll('a,button,.tool').forEach(el=>{
+      el.addEventListener('mouseenter',()=>cur.classList.add('big'));
+      el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
+    });
+
+    const prog=document.getElementById('prog');
+    window.addEventListener('scroll',()=>{prog.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';});
+
+    // Neural canvas strip
+    const c=document.getElementById('neural2');
+    const ctx=c.getContext('2d');
+    function resize(){c.width=c.offsetWidth;}
+    resize();window.addEventListener('resize',resize);
+    const pts=Array.from({length:55},()=>({x:Math.random()*c.width,y:Math.random()*100,vx:(Math.random()-.5)*.45,vy:(Math.random()-.5)*.45}));
+    function drawStrip(){
+      ctx.clearRect(0,0,c.width,100);
+      pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>c.width)p.vx*=-1;if(p.y<0||p.y>100)p.vy*=-1;});
+      for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(10,10,10,${.09*(1-d/110)})`;ctx.lineWidth=.5;ctx.stroke();}
+      }
+      pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,1.4,0,Math.PI*2);ctx.fillStyle='rgba(10,10,10,.14)';ctx.fill();});
+      requestAnimationFrame(drawStrip);
+    }
+    drawStrip();
+
+    // Reveal + skill bars
+    const obs=new IntersectionObserver(es=>{
+      es.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('on');
+          e.target.querySelectorAll('.skill-bar').forEach(b=>b.classList.add('on'));
+        }
+      });
+    },{threshold:.1});
+    document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
