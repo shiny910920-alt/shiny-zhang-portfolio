@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Porsche Sell Direct — Shiny Zhang</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #000; color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden; cursor: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Tokens (Porsche luxury — subtle red accent) ── */
+    :root {
+      --red: #D62828;
+      --red-dim: rgba(214,40,40,.12);
+      --red-border: rgba(214,40,40,.20);
+      --white: #ffffff;
+      --white-70: rgba(255,255,255,.7);
+      --white-50: rgba(255,255,255,.5);
+      --white-20: rgba(255,255,255,.2);
+      --border: rgba(255,255,255,.08);
+      --surface: rgba(255,255,255,.04);
+      --mono: 'DM Mono', monospace;
+    }
+
+    /* ── Cursor ── */
+    #cur { position: fixed; width: 10px; height: 10px; background: var(--red); border-radius: 50%; pointer-events: none; transform: translate(-50%,-50%); z-index: 9999; transition: width .25s, height .25s; }
+    #cur.big { width: 44px; height: 44px; background: transparent; border: 1.5px solid var(--red); }
+
+    /* ── Scroll progress ── */
+    #prog { position: fixed; top: 0; left: 0; height: 1px; background: var(--red); z-index: 9998; width: 0; }
+
+    /* ── Nav ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; align-items: center; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid transparent; transition: border-color .3s, background .3s; }
+    nav.scrolled { background: rgba(0,0,0,.85); backdrop-filter: blur(16px); border-bottom-color: var(--border); }
+    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-family: var(--mono); font-size: .65rem; color: var(--white-50); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta { font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; padding: 8px 18px; border: 1px solid var(--red-border); color: var(--red); text-decoration: none; transition: background .2s, border-color .2s; border-radius: 4px; }
+    .nav-cta:hover { background: var(--red-dim); border-color: var(--red); }
+
+    /* ── Background canvas ── */
+    #bgCanvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .3; }
+
+    /* ── Reveal ── */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+      .reveal.visible { opacity: 1; transform: none; }
+      .reveal-scale { opacity: 0; transform: scale(.97); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+      .reveal-scale.visible { opacity: 1; transform: none; }
+    }
+
+    /* ── Section utility ── */
+    .section { position: relative; z-index: 1; border-bottom: 1px solid var(--border); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+    .container-wide { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
+
+    /* ── Labels ── */
+    .section-label { font-family: var(--mono); font-size: .62rem; color: var(--red); letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+    .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--red); }
+
+    /* ── HERO ── */
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 80px; overflow: hidden; z-index: 1; }
+    .hero-back { position: absolute; top: 100px; left: 40px; font-family: var(--mono); font-size: .6rem; color: var(--white-50); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; transition: color .2s; }
+    .hero-back:hover { color: #fff; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--red); border: 1px solid var(--red-border); padding: 5px 12px; border-radius: 2px; margin-bottom: 28px; }
+    .hero-tag-dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
+    .hero-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3.5rem, 9.5vw, 11rem); letter-spacing: -.04em; line-height: .9; color: #fff; }
+    .hero-title span { color: var(--red); }
+    .hero-meta-row { display: flex; align-items: flex-start; gap: 64px; margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+    .hero-meta-label { font-family: var(--mono); font-size: .58rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
+    .hero-meta-val { font-family: 'Syne', sans-serif; font-weight: 600; font-size: .95rem; color: #fff; }
+    .hero-summary { max-width: 540px; font-family: 'DM Sans', sans-serif; font-size: 1.05rem; line-height: 1.75; color: var(--white-70); font-weight: 300; }
+
+    /* ── Hero visual ── */
+    .hero-visual-wrap { position: relative; margin-top: 72px; border-radius: 12px; overflow: hidden; }
+    .hero-visual-wrap::before { content: ''; position: absolute; inset: -60px; background: radial-gradient(ellipse 70% 50% at 50% 60%, rgba(214,40,40,.14), transparent 70%); z-index: 0; pointer-events: none; }
+    .hero-visual { position: relative; z-index: 1; border-radius: 12px; border: 1px solid var(--red-border); aspect-ratio: 21/9; background: linear-gradient(135deg,#0a0a0a 0%,#141414 40%,#1c1416 70%,#2a0e10 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero-visual .watermark { position: absolute; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(6rem,16vw,18rem); letter-spacing: .04em; color: rgba(255,255,255,.035); user-select: none; line-height: 1; white-space: nowrap; }
+
+    /* ── Overview ── */
+    .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 100px 0; }
+    .overview-left h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 4.5vw, 4rem); letter-spacing: -.04em; line-height: 1.02; margin: 20px 0 28px; }
+    .overview-left p { font-family: 'DM Sans', sans-serif; font-size: .95rem; line-height: 1.85; color: var(--white-70); }
+    .overview-left p + p { margin-top: 16px; }
+    .overview-facts { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 10px; overflow: hidden; }
+    .fact-row { background: #0a0a0a; padding: 24px 28px; display: flex; justify-content: space-between; align-items: baseline; gap: 20px; transition: background .2s; }
+    .fact-row:hover { background: rgba(214,40,40,.04); }
+    .fact-label { font-family: var(--mono); font-size: .58rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; flex-shrink: 0; }
+    .fact-val { font-family: 'Syne', sans-serif; font-weight: 600; font-size: .95rem; color: #fff; text-align: right; }
+
+    /* ── Two col challenge ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+    .col-block { background: #000; padding: 72px 56px; }
+    .col-block h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.6rem,3vw,2.6rem); letter-spacing: -.04em; line-height: 1.05; margin: 20px 0 20px; }
+    .col-block p { font-family: 'DM Sans', sans-serif; font-size: .9rem; line-height: 1.85; color: var(--white-70); }
+    .col-block p + p { margin-top: 14px; }
+    .challenge-list { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-top: 8px; }
+    .challenge-list li { font-family: 'DM Sans', sans-serif; font-size: .92rem; line-height: 1.7; color: var(--white-70); display: flex; gap: 14px; align-items: flex-start; }
+    .challenge-list li::before { content: ''; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--red); margin-top: 8px; }
+
+    /* ── Contribution cards ── */
+    .contrib-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); }
+    .contrib-card { background: #050505; padding: 48px 44px; transition: background .3s; }
+    .contrib-card:hover { background: rgba(214,40,40,.03); }
+    .contrib-num { font-family: var(--mono); font-size: .58rem; color: var(--red); letter-spacing: .1em; margin-bottom: 22px; }
+    .contrib-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -.03em; margin-bottom: 12px; }
+    .contrib-body { font-family: 'DM Sans', sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-50); }
+
+    /* ── Selected screens ── */
+    .screen-block { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid var(--border); }
+    .screen-block:last-child { border-bottom: none; }
+    .screen-block.flip .screen-visual { order: 2; border-left: 1px solid var(--border); border-right: none; }
+    .screen-visual { padding: 64px 56px; border-right: 1px solid var(--border); display: flex; align-items: center; justify-content: center; background: #030303; }
+    .screen-text { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
+    .screen-text .scr-num { font-family: var(--mono); font-size: .58rem; color: var(--red); letter-spacing: .1em; margin-bottom: 16px; }
+    .screen-text h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.5rem,3vw,2.4rem); letter-spacing: -.03em; line-height: 1.05; margin-bottom: 20px; }
+    .scr-row { margin-top: 18px; }
+    .scr-row-label { font-family: var(--mono); font-size: .56rem; color: var(--red); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+    .scr-row-body { font-family: 'DM Sans', sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-70); }
+
+    /* Screen placeholder frame (swap with real images later) */
+    .device-frame { width: 100%; max-width: 300px; aspect-ratio: 9/16; background: #0c0c0c; border: 1px solid rgba(214,40,40,.18); border-radius: 22px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.7), 0 0 60px rgba(214,40,40,.06); position: relative; }
+    .device-frame.wide { aspect-ratio: 4/3; max-width: 440px; border-radius: 12px; }
+    .device-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .device-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; }
+    .ph-bar { height: 30px; background: #111; display: flex; align-items: center; padding: 0 12px; gap: 6px; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .ph-logo { font-family: var(--mono); font-size: .42rem; color: rgba(255,255,255,.4); letter-spacing: .16em; }
+    .ph-body { flex: 1; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .ph-line { height: 6px; background: rgba(255,255,255,.05); border-radius: 3px; }
+    .ph-block { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.05); border-radius: 6px; }
+    .ph-cta { height: 32px; background: var(--red); border-radius: 6px; }
+    .ph-watermark { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: .55rem; color: rgba(255,255,255,.18); letter-spacing: .12em; text-transform: uppercase; pointer-events: none; }
+
+    /* ── Principles ── */
+    .principles-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); }
+    .principle { background: #000; padding: 52px 48px; transition: background .3s; }
+    .principle:hover { background: rgba(214,40,40,.03); }
+    .principle-idx { font-family: var(--mono); font-size: .58rem; color: var(--white-20); letter-spacing: .1em; margin-bottom: 20px; }
+    .principle h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: -.03em; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+    .principle h3::before { content: ''; width: 4px; height: 18px; background: var(--red); border-radius: 2px; flex-shrink: 0; }
+    .principle p { font-family: 'DM Sans', sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-50); }
+
+    /* ── Reflection ── */
+    .reflection-inner { padding: 110px 0; max-width: 860px; }
+    .reflection-inner h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem,4vw,3.5rem); letter-spacing: -.04em; line-height: 1; margin: 20px 0 32px; }
+    .reflection-inner p { font-family: 'DM Sans', sans-serif; font-size: 1.02rem; line-height: 1.9; color: var(--white-70); font-weight: 300; }
+    .reflection-inner p + p { margin-top: 20px; }
+    .reflection-inner em { font-style: normal; color: var(--red); }
+
+    /* ── NDA notice ── */
+    .nda { background: #050505; }
+    .nda-inner { padding: 56px 0; display: flex; gap: 20px; align-items: flex-start; max-width: 860px; }
+    .nda-icon { width: 38px; height: 38px; border: 1px solid var(--red-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nda-text { font-family: 'DM Sans', sans-serif; font-size: .9rem; line-height: 1.8; color: var(--white-50); font-style: italic; }
+
+    /* ── Next project ── */
+    .next-section { padding: 120px 0; position: relative; z-index: 1; }
+    .next-inner { display: flex; justify-content: space-between; align-items: flex-end; }
+    .next-label { font-family: var(--mono); font-size: .6rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+    .next-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem,6vw,6rem); letter-spacing: -.05em; line-height: .88; }
+    .next-btn { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; padding: 16px 32px; border: 1px solid var(--red-border); color: var(--red); text-decoration: none; border-radius: 4px; transition: background .2s, border-color .2s, color .2s; white-space: nowrap; }
+    .next-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+    /* ── Footer ── */
+    .cs-footer { border-top: 1px solid var(--border); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+    .cs-footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; text-decoration: none; }
+    .cs-footer-links { display: flex; gap: 24px; }
+    .cs-footer-links a { font-family: var(--mono); font-size: .6rem; color: var(--white-50); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
+    .cs-footer-links a:hover { color: #fff; }
+    .cs-footer-copy { font-family: var(--mono); font-size: .58rem; color: rgba(255,255,255,.25); }
+
+    /* ── Responsive ── */
+    @media (max-width: 960px) {
+      .container, .container-wide { padding: 0 24px; }
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .overview-grid, .two-col, .contrib-grid, .principles-grid { grid-template-columns: 1fr; gap: 0; }
+      .col-block { padding: 52px 28px; }
+      .contrib-card, .principle { border-bottom: 1px solid var(--border); }
+      .screen-block, .screen-block.flip { grid-template-columns: 1fr; }
+      .screen-block.flip .screen-visual { order: 0; border-left: none; }
+      .screen-visual { border-right: none; border-bottom: 1px solid var(--border); padding: 48px 28px; }
+      .screen-text { padding: 48px 28px; }
+      .next-inner { flex-direction: column; gap: 32px; align-items: flex-start; }
+      .hero-meta-row { gap: 32px; }
+      .cs-footer { flex-direction: column; gap: 16px; text-align: center; }
+      .cs-footer-links { flex-wrap: wrap; justify-content: center; }
+      .nda-inner { padding: 44px 0; }
+    }
+    @media (max-width: 600px) {
+      .contrib-grid, .principles-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cur"></div>
+  <div id="prog"></div>
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- ══ NAV ══ -->
+  <nav id="mainNav">
+    <a href="index.html" class="nav-logo">SZ.</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </div>
+    <a href="mailto:shiny910920@gmail.com" class="nav-cta">Get in touch</a>
+  </nav>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero section">
+    <a href="index.html#selected-work" class="hero-back">← Back to projects</a>
+
+    <div class="container">
+      <div class="reveal">
+        <div class="hero-tag">
+          <div class="hero-tag-dot"></div>
+          Automotive · Marketplace · Mobile
+        </div>
+        <h1 class="hero-title">Porsche<br/><span>Sell Direct.</span></h1>
+      </div>
+
+      <div class="hero-meta-row reveal" style="transition-delay:.1s">
+        <div>
+          <div class="hero-meta-label">Company</div>
+          <div class="hero-meta-val">Porsche Australia</div>
+        </div>
+        <div>
+          <div class="hero-meta-label">Role</div>
+          <div class="hero-meta-val">Senior Product Designer</div>
+        </div>
+        <div>
+          <div class="hero-meta-label">Category</div>
+          <div class="hero-meta-val">Automotive Marketplace</div>
+        </div>
+        <div>
+          <div class="hero-meta-label">Focus</div>
+          <div class="hero-meta-val">UX Optimisation &amp; Mobile</div>
+        </div>
+        <div style="margin-left:auto;">
+          <p class="hero-summary">Porsche Australia's official platform for selling pre-owned vehicles directly to authorised Porsche dealerships — refined for trust, simplicity, and a premium digital experience.</p>
+        </div>
+      </div>
+
+      <div class="hero-visual-wrap reveal-scale" style="transition-delay:.2s">
+        <div class="hero-visual">
+          <div class="watermark">PORSCHE</div>
+          <div style="position:relative;z-index:1;display:flex;align-items:center;gap:24px;">
+            <!-- wide device hint -->
+            <div style="width:300px;height:188px;background:rgba(255,255,255,.03);border:1px solid rgba(214,40,40,.2);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 0 48px rgba(214,40,40,.08);">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(255,255,255,.55);letter-spacing:.18em;">PORSCHE</span>
+                <span style="font-family:'DM Mono',monospace;font-size:.42rem;color:rgba(255,255,255,.3);letter-spacing:.1em;">SELL DIRECT</span>
+              </div>
+              <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:5px;display:flex;align-items:center;justify-content:center;">
+                <div style="width:120px;height:56px;background:rgba(255,255,255,.04);border-radius:4px;"></div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <div style="height:8px;flex:1;background:rgba(255,255,255,.06);border-radius:3px;"></div>
+                <div style="height:8px;width:60px;background:rgba(255,255,255,.06);border-radius:3px;"></div>
+                <div style="height:24px;width:72px;background:#d62828;border-radius:4px;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 01 OVERVIEW ══ -->
+  <section class="section">
+    <div class="container">
+      <div class="overview-grid">
+        <div class="overview-left reveal">
+          <div class="section-label">01 — Overview</div>
+          <h2>Selling a Porsche,<br/>the Porsche way.</h2>
+          <p>Porsche Sell Direct is Porsche Australia's official platform for selling pre-owned vehicles directly to authorised Porsche dealerships. The platform enables Porsche owners to create vehicle listings, submit vehicle information, upload photos, and receive offers from approved Porsche Centres.</p>
+          <p>As Senior Product Designer, I focused on improving trust, simplifying the selling journey, and creating a premium digital experience aligned with Porsche's luxury brand standards — refining usability, information architecture, and the mobile experience across the platform.</p>
+        </div>
+        <div class="overview-facts reveal" style="transition-delay:.12s">
+          <div class="fact-row"><span class="fact-label">Project</span><span class="fact-val">Porsche Sell Direct</span></div>
+          <div class="fact-row"><span class="fact-label">Category</span><span class="fact-val">Automotive Marketplace</span></div>
+          <div class="fact-row"><span class="fact-label">Company</span><span class="fact-val">Porsche Australia</span></div>
+          <div class="fact-row"><span class="fact-label">Role</span><span class="fact-val">Senior Product Designer</span></div>
+          <div class="fact-row"><span class="fact-label">Contribution</span><span class="fact-val">UX · IA · Mobile · Visual</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 02 THE CHALLENGE ══ -->
+  <section class="section">
+    <div class="two-col reveal">
+      <div class="col-block">
+        <div class="section-label">02 — The Challenge</div>
+        <h3>A high-trust<br/>transaction.</h3>
+        <p>Selling a luxury vehicle is one of the highest-value, highest-stakes transactions a customer can make online. The experience had to earn confidence at every step while feeling effortless — and unmistakably Porsche.</p>
+      </div>
+      <div class="col-block" style="background:#050505;">
+        <div class="section-label">What it had to solve</div>
+        <ul class="challenge-list" style="margin-top:28px;">
+          <li>Selling a luxury vehicle is a high-trust transaction — the platform must establish credibility immediately.</li>
+          <li>Users need confidence and transparency around what happens after they submit their vehicle.</li>
+          <li>The listing process needs to feel effortless, even when capturing detailed vehicle information and photos.</li>
+          <li>The digital experience must reflect Porsche's premium brand at every touchpoint.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 03 MY CONTRIBUTION ══ -->
+  <section class="section">
+    <div class="container" style="padding-top:80px; padding-bottom:56px;">
+      <div class="section-label reveal">03 — My Contribution</div>
+      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">Where I made<br/>the difference.</h2>
+    </div>
+    <div class="contrib-grid reveal">
+      <div class="contrib-card">
+        <div class="contrib-num">01 — UX OPTIMISATION</div>
+        <div class="contrib-title">UX Optimisation</div>
+        <div class="contrib-body">Improved usability and reduced friction across the platform's key flows — from creating a listing to submitting vehicle details and reviewing offers, removing unnecessary steps along the way.</div>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-num">02 — INFORMATION ARCHITECTURE</div>
+        <div class="contrib-title">Information Architecture</div>
+        <div class="contrib-body">Refined the content hierarchy and navigation patterns so that complex vehicle information was organised logically, scannable, and easy to act on across the journey.</div>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-num">03 — MOBILE EXPERIENCE</div>
+        <div class="contrib-title">Mobile Experience</div>
+        <div class="contrib-body">Enhanced the experience for owners managing listings on mobile devices — optimising layouts, inputs, and photo uploads for users completing tasks on the go.</div>
+      </div>
+      <div class="contrib-card">
+        <div class="contrib-num">04 — PREMIUM VISUAL DESIGN</div>
+        <div class="contrib-title">Premium Visual Design</div>
+        <div class="contrib-body">Aligned the interface with Porsche's luxury digital standards — typography, spacing, and visual detail calibrated to feel consistent with the brand's premium identity.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 04 SELECTED SCREENS ══ -->
+  <section class="section">
+    <div class="container" style="padding-top:80px; padding-bottom:56px;">
+      <div class="section-label reveal">04 — Selected Screens</div>
+      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">Selected screens.</h2>
+      <p class="reveal" style="font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--white-50);max-width:540px;line-height:1.75;transition-delay:.1s;">A focused selection of the work, presented as showcase pieces. Each screen reflects a specific UX problem and the improvements introduced to solve it.</p>
+    </div>
+
+    <!-- Screen 1 — Listing creation -->
+    <div class="screen-block reveal">
+      <div class="screen-visual">
+        <div class="device-frame">
+          <!-- Replace with: <img class="device-img" src="public/projects/porsche-sell-direct/listing.png" alt="Listing creation screen" /> -->
+          <div class="device-placeholder">
+            <div class="ph-bar"><span class="ph-logo">PORSCHE</span></div>
+            <div class="ph-body">
+              <div class="ph-line" style="width:60%;"></div>
+              <div class="ph-block" style="flex:1;"></div>
+              <div class="ph-line"></div>
+              <div class="ph-line" style="width:75%;"></div>
+              <div class="ph-line" style="width:50%;"></div>
+              <div class="ph-cta" style="margin-top:auto;"></div>
+            </div>
+          </div>
+          <div class="ph-watermark">Screen available on request</div>
+        </div>
+      </div>
+      <div class="screen-text">
+        <div class="scr-num">SCREEN 01</div>
+        <h3>Create a vehicle listing.</h3>
+        <div class="scr-row">
+          <div class="scr-row-label">Why it exists</div>
+          <div class="scr-row-body">The entry point to the entire journey — where owners begin telling the story of their vehicle and committing to the sale.</div>
+        </div>
+        <div class="scr-row">
+          <div class="scr-row-label">The problem it solves</div>
+          <div class="scr-row-body">Capturing accurate vehicle information is detailed and can feel daunting. The flow needed to feel effortless without sacrificing the depth dealerships require.</div>
+        </div>
+        <div class="scr-row">
+          <div class="scr-row-label">Improvements introduced</div>
+          <div class="scr-row-body">Restructured the input flow into clear, progressive steps, reduced cognitive load per screen, and surfaced guidance at the right moments to keep owners confident and moving forward.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 2 — Photo upload (flipped) -->
+    <div class="screen-block flip reveal">
+      <div class="screen-visual">
+        <div class="device-frame">
+          <div class="device-placeholder">
+            <div class="ph-bar"><span class="ph-logo">PORSCHE</span></div>
+            <div class="ph-body">
+              <div class="ph-line" style="width:50%;"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;flex:1;">
+                <div class="ph-block"></div><div class="ph-block"></div>
+                <div class="ph-block"></div><div class="ph-block" style="border-style:dashed;border-color:rgba(214,40,40,.3);"></div>
+              </div>
+              <div class="ph-line" style="width:70%;"></div>
+              <div class="ph-cta" style="margin-top:auto;"></div>
+            </div>
+          </div>
+          <div class="ph-watermark">Screen available on request</div>
+        </div>
+      </div>
+      <div class="screen-text">
+        <div class="scr-num">SCREEN 02</div>
+        <h3>Upload vehicle photos.</h3>
+        <div class="scr-row">
+          <div class="scr-row-label">Why it exists</div>
+          <div class="scr-row-body">Photography is how a premium vehicle earns its value online. Dealerships rely on quality imagery to assess and make competitive offers.</div>
+        </div>
+        <div class="scr-row">
+          <div class="scr-row-label">The problem it solves</div>
+          <div class="scr-row-body">Uploading multiple high-resolution photos on mobile is a common drop-off point — slow, unclear, and easy to abandon.</div>
+        </div>
+        <div class="scr-row">
+          <div class="scr-row-label">Improvements introduced</div>
+          <div class="scr-row-body">Simplified the upload pattern with clear states and guidance on which angles matter, designed mobile-first so owners can capture and submit directly from their phone.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 3 — Offers / status -->
+    <div class="screen-block reveal">
+      <div class="screen-visual">
+        <div class="device-frame wide">
+          <div class="device-placeholder">
+            <div class="ph-bar"><span class="ph-logo">PORSCHE</span><span style="margin-left:auto;font-family:'DM Mono',monospace;font-size:.4rem;color:rgba(214,40,40,.7);letter-spacing:.1em;">OFFER RECEIVED</span></div>
+            <div class="ph-body" style="flex-direction:row;gap:12px;">
+              <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+                <div class="ph-block" style="height:60px;"></div>
+                <div class="ph-line"></div>
+                <div class="ph-line" style="width:60%;"></div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+                <div class="ph-line" style="width:40%;"></div>
+                <div class="ph-block" style="flex:1;"></div>
+                <div class="ph-cta"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ph-watermark">Screen available on request</div>
+        </div>
+      </div>
+      <div class="screen-text">
+        <div class="scr-num">SCREEN 03</div>
+        <h3>Track offers &amp; status.</h3>
+        <div class="scr-row">
+          <div class="scr-row-label">Why it exists</div>
+          <div class="scr-row-body">After submitting a vehicle, owners need to know exactly what happens next — and to feel in control while approved Porsche Centres respond with offers.</div>
+        </div>
+        <div class="scr-row">
+          <div class="scr-row-label">The problem it solves</div>
+          <div class="scr-row-body">Uncertainty erodes trust in high-value transactions. Without clear status, owners are left wondering whether anything is happening at all.</div>
+        </div>
+        <div class="scr-row">
+          <div class="scr-row-label">Improvements introduced</div>
+          <div class="scr-row-body">Clarified the post-submission experience with transparent status communication and a clear hierarchy for reviewing and acting on offers from dealerships.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 05 KEY DESIGN PRINCIPLES ══ -->
+  <section class="section">
+    <div class="container" style="padding-top:80px; padding-bottom:56px;">
+      <div class="section-label reveal">05 — Key Design Principles</div>
+      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">What guided<br/>every decision.</h2>
+    </div>
+    <div class="principles-grid reveal">
+      <div class="principle">
+        <div class="principle-idx">01</div>
+        <h3>Trust &amp; Transparency</h3>
+        <p>Help users understand exactly what happens after submitting a vehicle — removing ambiguity from a high-value, high-stakes transaction.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-idx">02</div>
+        <h3>Reduced Friction</h3>
+        <p>Simplify vehicle listing creation and photo uploads, so owners can complete a detailed process without it ever feeling like a burden.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-idx">03</div>
+        <h3>Premium Experience</h3>
+        <p>Create a digital experience that feels consistent with the Porsche brand — considered, refined, and confident in every detail.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-idx">04</div>
+        <h3>Mobile First</h3>
+        <p>Optimise the experience for users completing tasks on the go — capturing photos and managing listings directly from their phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 06 REFLECTION ══ -->
+  <section class="section">
+    <div class="container">
+      <div class="reflection-inner reveal">
+        <div class="section-label">06 — Reflection</div>
+        <h2>Designing for<br/>high-value trust.</h2>
+        <p>Designing for a transaction of this value reframes what "good UX" means. When someone is selling a Porsche, the interface isn't competing for attention — it's earning <em>confidence</em>. Every interaction had to quietly reassure: your vehicle is understood, your information is safe, and a real Porsche Centre is on the other side.</p>
+        <p>The most interesting tension was balancing business objectives with user confidence. Dealerships need rich, accurate vehicle data to make competitive offers; owners want the lightest possible path to an outcome. The work lived in resolving that tension — structuring depth so it never felt heavy, and making transparency the default rather than an afterthought.</p>
+        <p>Working within an established global brand ecosystem meant designing with discipline. There was little room for invention for its own sake; the goal was to express Porsche's standards faithfully in a digital context — restraint, precision, and a premium feel achieved through detail rather than decoration. That constraint, more than anything, is what made the work satisfying.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NDA NOTICE ══ -->
+  <section class="nda section">
+    <div class="container">
+      <div class="nda-inner">
+        <div class="nda-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D62828" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <p class="nda-text">Some project details, internal processes, and design artefacts have been omitted due to confidentiality agreements. This case study focuses on publicly shareable work and my contribution to the project.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ NEXT PROJECT ══ -->
+  <section class="next-section section">
+    <div class="container">
+      <div class="next-inner reveal">
+        <div>
+          <div class="next-label">Next case study</div>
+          <div class="next-title">ZED Picks —<br/>Web3 Racing.</div>
+        </div>
+        <a href="zed-picks.html" class="next-btn">View case study →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="cs-footer">
+    <a href="index.html" class="cs-footer-logo">SZ.</a>
+    <div class="cs-footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="mailto:shiny910920@gmail.com">Email</a>
+      <a href="#">Behance</a>
+      <a href="#">LinkedIn</a>
+    </div>
+    <div class="cs-footer-copy">© 2025 Shiny Zhang. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // ── Cursor ──
+    const cur = document.getElementById('cur');
+    document.addEventListener('mousemove', e => { cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px'; });
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => cur.classList.add('big'));
+      el.addEventListener('mouseleave', () => cur.classList.remove('big'));
+    });
+
+    // ── Scroll progress + nav ──
+    const prog = document.getElementById('prog');
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      prog.style.width = pct + '%';
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── Reveal ──
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal, .reveal-scale').forEach(el => obs.observe(el));
+
+    // ── Subtle background grid drift (luxury telemetry) ──
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, dots = [];
+    function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+    resize();
+    window.addEventListener('resize', () => { resize(); init(); });
+    function init() {
+      dots = Array.from({ length: 16 }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22,
+        r: 1 + Math.random() * 1.4,
+      }));
+    }
+    init();
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      dots.forEach(d => {
+        d.x += d.vx; d.y += d.vy;
+        if (d.x < 0 || d.x > W) d.vx *= -1;
+        if (d.y < 0 || d.y > H) d.vy *= -1;
+        ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(214,40,40,0.06)'; ctx.fill();
+      });
+      for (let i = 0; i < dots.length; i++) for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x, dy = dots[i].y - dots[j].y, dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 180) {
+          ctx.beginPath(); ctx.moveTo(dots[i].x, dots[i].y); ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = `rgba(214,40,40,${0.02 * (1 - dist/180)})`; ctx.lineWidth = .5; ctx.stroke();
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>

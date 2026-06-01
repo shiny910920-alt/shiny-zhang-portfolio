@@ -303,6 +303,59 @@
     .cs-footer-links a:hover { color: #fff; }
     .cs-footer-copy { font-family: var(--mono); font-size: .58rem; color: rgba(255,255,255,.25); }
 
+    /* ── Video section ── */
+    .video-section { position: relative; z-index: 1; border-bottom: 1px solid var(--border); }
+    .video-inner { padding: 100px 0; }
+    .video-header { margin-bottom: 52px; }
+    .video-header .section-label { margin-bottom: 20px; }
+    .video-header h2 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -.04em; line-height: 1;
+      color: #fff; margin-bottom: 16px;
+    }
+    .video-header p {
+      font-family: 'DM Sans', sans-serif; font-size: .95rem;
+      line-height: 1.8; color: var(--white-50); max-width: 520px;
+    }
+    .video-wrap {
+      position: relative; border-radius: 20px; overflow: hidden;
+      border: 1px solid rgba(129,218,148,.22);
+      box-shadow: 0 0 0 1px rgba(129,218,148,.06),
+                  0 8px 32px rgba(0,0,0,.6),
+                  0 0 80px rgba(129,218,148,.08);
+      transition: box-shadow .4s ease, border-color .4s ease, transform .4s cubic-bezier(.16,1,.3,1);
+      background: #050505;
+    }
+    .video-wrap:hover {
+      border-color: rgba(129,218,148,.38);
+      box-shadow: 0 0 0 1px rgba(129,218,148,.1),
+                  0 16px 48px rgba(0,0,0,.7),
+                  0 0 120px rgba(129,218,148,.14);
+      transform: translateY(-3px);
+    }
+    .video-wrap::before {
+      content: ''; position: absolute; inset: -60px;
+      background: radial-gradient(ellipse 80% 60% at 50% 110%, rgba(129,218,148,.1), transparent 65%);
+      z-index: 0; pointer-events: none; border-radius: inherit;
+    }
+    .video-ratio {
+      position: relative; width: 100%; padding-top: 56.25%; /* 16:9 */
+    }
+    .video-ratio iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      border: none; border-radius: 20px; display: block;
+    }
+    .video-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 20px; padding: 0 4px;
+    }
+    .video-meta-left {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: .58rem; color: var(--white-50); letter-spacing: .06em;
+    }
+    .video-meta-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    .video-meta-right { font-family: var(--mono); font-size: .58rem; color: rgba(255,255,255,.2); letter-spacing: .06em; }
+
     /* ── Responsive ── */
     @media (max-width: 960px) {
       .container, .container-wide { padding: 0 24px; }
@@ -431,6 +484,41 @@
     </div>
   </section>
 
+  <!-- ══ VIDEO DEMO ══ -->
+  <section class="video-section section">
+    <div class="container">
+      <div class="video-inner">
+
+        <div class="video-header reveal">
+          <div class="section-label">02 — ZED RUN Context</div>
+          <h2>Understanding the world<br/>behind ZED Picks.</h2>
+          <p>A quick introduction to ZED RUN's web-based racing experience and digital horse racing ecosystem. ZED Picks was designed as a mobile-first extension of this world, making the racing experience more accessible for casual users.</p>
+        </div>
+
+        <div class="video-wrap reveal" style="transition-delay:.12s">
+          <div class="video-ratio">
+            <iframe
+              src="https://www.youtube.com/embed/_t9TCwcTQHY?si=tk_K6m_bPIPWffn3&rel=0&modestbranding=1&color=white"
+              title="ZED Picks — Product Demo"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+
+        <div class="video-meta reveal" style="transition-delay:.2s">
+          <div class="video-meta-left">
+            <div class="video-meta-dot"></div>
+            ZED RUN · ECOSYSTEM INTRODUCTION
+          </div>
+          <div class="video-meta-right">Context · Web-Based Racing Platform</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ══ RESEARCH STATS ══ -->
   <section class="section">
     <div class="stats-row reveal">
@@ -453,7 +541,7 @@
   <section class="section">
     <div class="two-col reveal">
       <div class="col-block">
-        <div class="section-label">02 — Challenge</div>
+        <div class="section-label">03 — Challenge</div>
         <h3>High barrier.<br/>Huge opportunity.</h3>
         <p>ZED RUN's existing platform demanded significant crypto literacy to participate — wallets, gas fees, NFT ownership. This created an enormous barrier to entry for the mainstream audience.</p>
         <p>The platform was missing a massive opportunity to onboard non-Web3 users who were interested in horse racing and competitive gaming but couldn't — or wouldn't — engage with NFT ownership.</p>
@@ -469,7 +557,7 @@
   <!-- ══ DESIGN PROCESS ══ -->
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:64px;">
-      <div class="section-label reveal">03 — Process</div>
+      <div class="section-label reveal">04 — Process</div>
       <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 48px;">Design process.</h2>
     </div>
     <div class="process-row reveal">
@@ -504,7 +592,7 @@
   <!-- ══ KEY PERSONAS ══ -->
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:64px;">
-      <div class="section-label reveal">04 — Personas</div>
+      <div class="section-label reveal">05 — Personas</div>
       <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 48px;">Who we designed for.</h2>
     </div>
     <div class="persona-grid reveal">
@@ -558,7 +646,7 @@
   <!-- ══ USER JOURNEY ══ -->
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:64px;">
-      <div class="section-label reveal">05 — User Journey</div>
+      <div class="section-label reveal">06 — User Journey</div>
       <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">From discovery<br/>to return.</h2>
       <p class="reveal" style="font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--white-50);max-width:480px;line-height:1.75;margin-bottom:48px;transition-delay:.1s">Mapping the end-to-end experience for Jordan — the Casual Bettor — from first discovery through to placing his first bet and coming back.</p>
     </div>
@@ -595,7 +683,7 @@
     <div class="container">
       <div class="screens-header reveal">
         <div>
-          <div class="section-label">06 — Product Screens</div>
+          <div class="section-label">07 — Product Screens</div>
           <h2 style="margin-top:20px;">Key product<br/>screens.</h2>
         </div>
         <p>A dark-first interface channelling the energy of live horse racing — fast, visceral, and instantly comprehensible. Every screen reduces cognitive load while maximising emotional thrill.</p>
@@ -749,7 +837,7 @@
   <!-- ══ DESIGN SYSTEM ══ -->
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:64px;">
-      <div class="section-label reveal">07 — Design System</div>
+      <div class="section-label reveal">08 — Design System</div>
       <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">System &amp; tokens.</h2>
       <p class="reveal" style="font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--white-50);max-width:520px;line-height:1.75;margin-bottom:48px;transition-delay:.1s">A scalable dark-first design system built to serve both ZED Picks and the broader ZED RUN ecosystem — 298 components delivered.</p>
     </div>
@@ -786,7 +874,7 @@
     <div class="container" style="padding: 100px 0;">
       <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
         <div>
-          <div class="section-label">08 — Interaction</div>
+          <div class="section-label">09 — Interaction</div>
           <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 24px;">Motion as<br/>communication.</h2>
           <p style="font-family:'DM Sans',sans-serif;font-size:.9rem;line-height:1.85;color:var(--white-70);">Every interaction in ZED Picks was designed to amplify the emotional arc of placing a bet and watching a race. The micro-interaction system makes each tap feel responsive and rewarding — driving engagement through feedback loops and celebratory moments.</p>
           <p style="font-family:'DM Sans',sans-serif;font-size:.9rem;line-height:1.85;color:var(--white-70);margin-top:16px;">Motion design plays a central role: race animations build tension, win states erupt with satisfying particle effects, and the live race progress bar creates edge-of-seat engagement even for a race lasting under 60 seconds.</p>
@@ -816,7 +904,7 @@
   <!-- ══ RESULTS & IMPACT ══ -->
   <section class="impact-section section">
     <div class="container impact-inner">
-      <div class="section-label reveal">09 — Results &amp; Impact</div>
+      <div class="section-label reveal">10 — Results &amp; Impact</div>
       <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">Business<br/>value.</h2>
       <div class="impact-grid reveal" style="transition-delay:.15s">
         <div class="impact-cell">
@@ -844,7 +932,7 @@
     <div class="container">
       <div class="reflection-grid">
         <div class="reflection-left reveal">
-          <div class="section-label">10 — Reflection</div>
+          <div class="section-label">11 — Reflection</div>
           <h2>What I<br/>learned.</h2>
           <p>ZED Picks was designed to deliver measurable business value — not just a polished experience. The product strategy was built around compounding outcomes that justify the investment for ZED RUN's long-term growth.</p>
           <p style="margin-top:16px;">The goal was never to make a betting app. It was to make <em style="font-style:normal;color:var(--green);">belonging</em> feel effortless — a first handshake with a world that can become deeply engaging.</p>
