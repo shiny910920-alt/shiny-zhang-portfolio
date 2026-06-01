@@ -3,7 +3,6 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/",          "destination": "/index.html"     },
-    { "source": "/work",      "destination": "/work.html"      },
     { "source": "/about",     "destination": "/about.html"     },
     { "source": "/zed-picks", "destination": "/zed-picks.html" }
   ],
