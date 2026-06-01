@@ -82,6 +82,11 @@
     .frame-soft { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(46,59,64,.12); box-shadow: 0 30px 70px rgba(46,59,64,.18); }
     /* Flat, editorial — no shadow, blends into canvas */
     .frame-flat { position: relative; border-radius: 8px; overflow: hidden; }
+    /* Brand identity — two-up editorial grid, soft rounded, no heavy shadow */
+    .brand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .brand-grid .frame-flat { border-radius: 14px; }
+    .brand-grid .shot { transition: transform .7s cubic-bezier(.16,1,.3,1); }
+    .brand-grid .frame-flat:hover .shot { transform: scale(1.02); }
     .glow-wrap { position: relative; }
     .glow-wrap::before { content: ''; position: absolute; inset: -80px; background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(191,154,87,.16), transparent 70%); z-index: 0; pointer-events: none; }
     .glow-wrap > * { position: relative; z-index: 1; }
@@ -171,6 +176,7 @@
       .nav-links { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; padding: 72px 0; }
       .web-grid { grid-template-columns: 1fr; }
+      .brand-grid { grid-template-columns: 1fr; gap: 16px; }
       .role-grid { grid-template-columns: 1fr 1fr; }
       .next-inner { flex-direction: column; gap: 32px; align-items: flex-start; }
       .hero-meta-row { gap: 32px; }
@@ -261,18 +267,24 @@
     </div>
   </section>
 
-  <!-- ══ 02 BRAND & IDENTITY ══ -->
+  <!-- ══ 02 BRAND IDENTITY ══ -->
   <section class="section sec-deep">
     <div class="container">
       <div class="sec-head reveal">
-        <div class="section-label">02 — Brand &amp; identity</div>
-        <h2>The mark.</h2>
-        <p>A wordmark paired with a moon-phase device — quiet, elegant, and rooted in the rhythm of breath and movement.</p>
+        <div class="section-label">02 — Brand Identity</div>
+        <h2>Building a mindful<br/>wellness brand.</h2>
+        <p>Halfmoon was designed as a modern digital wellness platform that blends yoga, pilates, and mindful living into a cohesive online experience.</p>
+        <p style="margin-top:18px;">The brand identity focused on creating a calm, grounded, and approachable visual language through natural colour palettes, organic graphic elements, soft typography, and lifestyle-led imagery.</p>
       </div>
     </div>
-    <div class="container-wide glow-wrap reveal-scale" style="padding-bottom:96px;">
-      <div class="frame">
-        <img class="shot" src="public/projects/halfmoon/hm%20logo.png" alt="Halfmoon logo & identity board" loading="lazy" />
+    <div class="container-wide reveal-scale" style="padding-bottom:96px;">
+      <div class="brand-grid">
+        <div class="frame-flat">
+          <img class="shot" src="public/projects/halfmoon/branding%20identity.png" alt="Halfmoon brand identity — visual language" loading="lazy" />
+        </div>
+        <div class="frame-flat">
+          <img class="shot" src="public/projects/halfmoon/branding%20identity%202.png" alt="Halfmoon brand identity — applications" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
