@@ -5,7 +5,8 @@
     { "source": "/",                   "destination": "/index.html"               },
     { "source": "/about",              "destination": "/about.html"               },
     { "source": "/zed-picks",          "destination": "/zed-picks.html"           },
-    { "source": "/porsche-sell-direct","destination": "/porsche-sell-direct.html" }
+    { "source": "/porsche-sell-direct","destination": "/porsche-sell-direct.html" },
+    { "source": "/halfmoon",           "destination": "/halfmoon.html"            }
   ],
   "headers": [
     {
