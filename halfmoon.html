@@ -80,6 +80,8 @@
     .shot { width: 100%; display: block; }
     .frame { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 30px 80px rgba(0,0,0,.45); }
     .frame-soft { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(46,59,64,.12); box-shadow: 0 30px 70px rgba(46,59,64,.18); }
+    /* Flat, editorial — no shadow, blends into canvas */
+    .frame-flat { position: relative; border-radius: 8px; overflow: hidden; }
     .glow-wrap { position: relative; }
     .glow-wrap::before { content: ''; position: absolute; inset: -80px; background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(191,154,87,.16), transparent 70%); z-index: 0; pointer-events: none; }
     .glow-wrap > * { position: relative; z-index: 1; }
@@ -285,12 +287,12 @@
       </div>
     </div>
     <div class="container-wide reveal-scale" style="padding-bottom:24px;">
-      <div class="frame">
+      <div class="frame-flat">
         <img class="shot" src="public/projects/halfmoon/color%20palette.png" alt="Halfmoon colour palette" loading="lazy" />
       </div>
     </div>
     <div class="container-wide reveal-scale" style="padding-bottom:96px;">
-      <div class="frame">
+      <div class="frame-flat">
         <img class="shot" src="public/projects/halfmoon/graphic%20palette.png" alt="Halfmoon graphic palette & texture system" loading="lazy" />
       </div>
     </div>
