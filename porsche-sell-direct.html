@@ -70,9 +70,10 @@
     .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--red); }
 
     /* ── HERO ── */
-    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 80px; overflow: hidden; z-index: 1; }
-    .hero-back { position: absolute; top: 100px; left: 40px; font-family: var(--mono); font-size: .6rem; color: var(--white-50); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; transition: color .2s; }
-    .hero-back:hover { color: #fff; }
+    .hero { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 120px 0 80px; overflow: hidden; z-index: 1; }
+    /* Back = utility nav, in-flow, clearly separated from hero content */
+    .hero-back { display: inline-flex; align-items: center; gap: 8px; width: fit-content; margin-bottom: 64px; font-family: var(--mono); font-size: .6rem; color: var(--white-50); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s, gap .2s; }
+    .hero-back:hover { color: #fff; gap: 12px; }
     .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--red); border: 1px solid var(--red-border); padding: 5px 12px; border-radius: 2px; margin-bottom: 28px; }
     .hero-tag-dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
@@ -222,9 +223,9 @@
 
   <!-- ══ HERO ══ -->
   <section class="hero section">
-    <a href="index.html#selected-work" class="hero-back">← Back to projects</a>
-
     <div class="container">
+      <a href="index.html#selected-work" class="hero-back">← Back to projects</a>
+
       <div class="reveal">
         <div class="hero-tag">
           <div class="hero-tag-dot"></div>
