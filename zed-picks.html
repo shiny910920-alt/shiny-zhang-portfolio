@@ -256,7 +256,10 @@
     .feature-row .fr-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,3.4vw,2.8rem); letter-spacing: -.03em; line-height: 1.04; margin-bottom: 20px; }
     .feature-row .fr-body { font-family: 'DM Sans', sans-serif; font-size: .92rem; line-height: 1.85; color: var(--white-70); font-weight: 300; }
     .feature-row .fr-body + .fr-body { margin-top: 14px; }
+    .feature-row .fr-kicker { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.01em; color: #fff; margin-bottom: 14px; }
+    .feature-row .fr-list-label { font-family: var(--mono); font-size: .56rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; margin-top: 24px; }
     .feature-row .fr-outcomes { list-style: none; margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .feature-row .fr-list-label + .fr-outcomes { margin-top: 12px; }
     .feature-row .fr-outcomes li { font-family: 'DM Sans', sans-serif; font-size: .88rem; color: var(--white-70); display: flex; align-items: flex-start; gap: 12px; line-height: 1.5; }
     .feature-row .fr-outcomes li::before { content: ''; flex-shrink: 0; width: 16px; height: 16px; margin-top: 1px; border-radius: 4px; background: rgba(129,218,148,.14); border: 1px solid rgba(129,218,148,.4); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2381DA94' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
     .feature-row.flip .fr-media { order: 2; }
@@ -765,21 +768,50 @@
         <p class="screen-desc" style="margin-top:16px;max-width:640px;">The emotional peak of the experience — a live race that builds tension, resolving into a celebratory win state with an immediate "race again" loop that captures momentum.</p>
       </div>
 
-      <!-- Wallet + Feature page -->
-      <div class="zed-grid-2 reveal tall" style="margin-top:64px;align-items:start;">
-        <div>
-          <div class="zed-cap-row">
-            <div class="screen-name">Wallet</div>
-            <div class="screen-type">Zcoin balance</div>
-          </div>
-          <img class="zed-shot" src="public/projects/zed-picks/wallet.png" alt="ZED Picks — wallet and Zcoin balance" loading="lazy" />
+      <!-- Wallet Experience — content left, wallet screens right -->
+      <div class="feature-row flip reveal" style="margin-top:96px;">
+        <div class="fr-media">
+          <img class="zed-shot" src="public/projects/zed-picks/wallet.png" alt="ZED Picks — wallet currency toggle, ZCoin & ZCash" loading="lazy" />
         </div>
-        <div>
-          <div class="zed-cap-row">
-            <div class="screen-name">Screen Set</div>
-            <div class="screen-type">Core surfaces</div>
-          </div>
-          <img class="zed-shot" src="public/projects/zed-picks/Screenshots.png" alt="ZED Picks — core screen set" loading="lazy" />
+        <div class="fr-content">
+          <div class="fr-label">Wallet Experience</div>
+          <h3 class="fr-title">Currency Toggle Design.</h3>
+          <div class="fr-kicker">Design Decisions</div>
+          <p class="fr-body">The wallet needed to support both ZCoin and ZCash without overwhelming new users with crypto concepts.</p>
+          <p class="fr-body">To reduce cognitive load, I introduced a simple toggle pattern that allows users to switch between currencies while maintaining a consistent mental model.</p>
+          <div class="fr-list-label">Key decisions</div>
+          <ul class="fr-outcomes">
+            <li>Clear toggle control for switching between currencies</li>
+            <li>Distinct visual themes for each currency</li>
+            <li>Gold treatment for ZCoin</li>
+            <li>Blue treatment for ZCash</li>
+            <li>Progressive disclosure of crypto-related functionality</li>
+            <li>Familiar balance and transaction history patterns</li>
+          </ul>
+          <p class="fr-body" style="margin-top:24px;">The goal was to make the system feel approachable for mainstream users while preserving flexibility for more advanced users.</p>
+        </div>
+      </div>
+
+      <!-- Visual Language — illustration/feedback screens left, design intent right -->
+      <div class="feature-row reveal" style="margin-top:96px;">
+        <div class="fr-media">
+          <img class="zed-shot" src="public/projects/zed-picks/Screenshots.png" alt="ZED Picks — reward illustrations & feedback states" loading="lazy" />
+        </div>
+        <div class="fr-content">
+          <div class="fr-label">Visual Language</div>
+          <h3 class="fr-title">Illustration Style &amp; Feedback System.</h3>
+          <div class="fr-kicker">Design Intent</div>
+          <p class="fr-body">Moments such as rewards, referrals, successful redemptions, and race reminders were intentionally designed to feel celebratory and memorable.</p>
+          <p class="fr-body">Rather than relying on standard system notifications, the experience uses custom illustrations, motion-inspired graphics, and racing-themed visual language to reinforce the brand personality.</p>
+          <div class="fr-list-label">Key decisions</div>
+          <ul class="fr-outcomes">
+            <li>Custom reward illustrations</li>
+            <li>Consistent racing-inspired motifs</li>
+            <li>Strong visual feedback for achievements</li>
+            <li>Increased emotional engagement</li>
+            <li>Clear communication of system status</li>
+          </ul>
+          <p class="fr-body" style="margin-top:24px;">These moments transform functional interactions into rewarding experiences and help strengthen long-term engagement.</p>
         </div>
       </div>
     </div>
