@@ -17,16 +17,19 @@
     #cur.big{width:48px;height:48px;}
     #prog{position:fixed;top:0;left:0;height:2px;background:var(--g);z-index:9998;}
 
-    nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;}
-    .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:var(--ink);text-decoration:none;}
-    .nav-pills{display:flex;gap:8px;}
-    .pill{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s;}
-    .pill:hover{transform:scale(1.06);}
-    .pill-y{background:var(--y);color:var(--ink);}
-    .pill-p{background:var(--p);color:#fff;}
-    .pill-ink{background:var(--ink);color:var(--bg);}
-    .pill-ink:hover{background:var(--p);}
-    .pill-g{background:var(--g);color:var(--ink);}
+    /* ===== GLOBAL PORTFOLIO NAV — shared component · literal colours · do NOT override per project ===== */
+    .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:transparent;}
+    .site-nav__logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:#0A0A0A;text-decoration:none;}
+    .site-nav--dark .site-nav__logo{color:#FFFDFD;}
+    .site-nav__pills{display:flex;gap:8px;}
+    .site-nav__pill{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s ease,background .2s ease;display:inline-block;}
+    .site-nav__pill:hover{transform:scale(1.06);}
+    .site-nav__pill--home{background:#CCFF00;color:#0A0A0A;}
+    .site-nav__pill--about{background:#00FF85;color:#0A0A0A;}
+    .site-nav__pill--contact{background:#0A0A0A;color:#FFFDFD;}
+    .site-nav__pill--contact:hover{background:#FF2787;color:#FFFDFD;}
+    @media(max-width:768px){.site-nav{padding:16px 20px;}}
+    /* ================================================================================================ */
 
     /* Hero */
     .hero{padding:140px 32px 0;}
@@ -155,7 +158,6 @@
       .f-links{justify-content:center;}
     }
     @media(max-width:600px){
-      nav{padding:16px 20px;}
       .principles-grid{grid-template-columns:1fr;}
       .principle:nth-child(3n){border-right:none;}
     }
@@ -165,12 +167,12 @@
   <div id="cur"></div>
   <div id="prog"></div>
 
-  <nav>
-    <a href="index.html" class="nav-logo">SZ.</a>
-    <div class="nav-pills">
-      <a href="index.html" class="pill pill-y">Home</a>
-      <a href="about.html" class="pill pill-g">About</a>
-      <a href="mailto:shiny910920@gmail.com" class="pill pill-ink">Contact</a>
+  <nav class="site-nav" id="mainNav">
+    <a href="index.html" class="site-nav__logo">SZ.</a>
+    <div class="site-nav__pills">
+      <a href="index.html" class="site-nav__pill site-nav__pill--home">Home</a>
+      <a href="about.html" class="site-nav__pill site-nav__pill--about">About</a>
+      <a href="mailto:shiny910920@gmail.com" class="site-nav__pill site-nav__pill--contact">Contact</a>
     </div>
   </nav>
 

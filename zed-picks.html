@@ -53,26 +53,19 @@
       background: var(--green); z-index: 9998; width: 0;
     }
 
-    /* ── Nav ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 40px;
-      border-bottom: 1px solid transparent;
-      transition: border-color .3s, background .3s;
-    }
-    nav.scrolled { background: rgba(0,0,0,.85); backdrop-filter: blur(16px); border-bottom-color: var(--border); }
-    .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; text-decoration: none; letter-spacing: -.02em; }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
-    .nav-links a { font-family: var(--mono); font-size: .65rem; color: var(--white-50); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
-    .nav-links a:hover { color: #fff; }
-    .nav-cta {
-      font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
-      padding: 8px 18px; border: 1px solid var(--green-border); color: var(--green);
-      text-decoration: none; transition: background .2s, border-color .2s;
-      border-radius: 4px;
-    }
-    .nav-cta:hover { background: var(--green-dim); border-color: var(--green); }
+    /* ===== GLOBAL PORTFOLIO NAV — shared component · literal colours · do NOT override per project ===== */
+    .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:transparent;}
+    .site-nav__logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:#0A0A0A;text-decoration:none;}
+    .site-nav--dark .site-nav__logo{color:#FFFDFD;}
+    .site-nav__pills{display:flex;gap:8px;}
+    .site-nav__pill{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s ease,background .2s ease;display:inline-block;}
+    .site-nav__pill:hover{transform:scale(1.06);}
+    .site-nav__pill--home{background:#CCFF00;color:#0A0A0A;}
+    .site-nav__pill--about{background:#00FF85;color:#0A0A0A;}
+    .site-nav__pill--contact{background:#0A0A0A;color:#FFFDFD;}
+    .site-nav__pill--contact:hover{background:#FF2787;color:#FFFDFD;}
+    @media(max-width:768px){.site-nav{padding:16px 20px;}}
+    /* ================================================================================================ */
 
     /* ── Background canvas ── */
     #bgCanvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .35; }
@@ -361,8 +354,6 @@
     /* ── Responsive ── */
     @media (max-width: 960px) {
       .container, .container-wide { padding: 0 24px; }
-      nav { padding: 18px 24px; }
-      .nav-links { display: none; }
       .overview-grid, .two-col, .reflection-grid { grid-template-columns: 1fr; gap: 0; }
       .col-block { padding: 52px 28px; }
       .stats-row, .process-row { grid-template-columns: 1fr 1fr; }
@@ -393,13 +384,13 @@
   <canvas id="bgCanvas"></canvas>
 
   <!-- ══ NAV ══ -->
-  <nav id="mainNav">
-    <a href="index.html" class="nav-logo">SZ.</a>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
+  <nav class="site-nav site-nav--dark" id="mainNav">
+    <a href="index.html" class="site-nav__logo">SZ.</a>
+    <div class="site-nav__pills">
+      <a href="index.html" class="site-nav__pill site-nav__pill--home">Home</a>
+      <a href="about.html" class="site-nav__pill site-nav__pill--about">About</a>
+      <a href="mailto:shiny910920@gmail.com" class="site-nav__pill site-nav__pill--contact">Contact</a>
     </div>
-    <a href="mailto:shiny910920@gmail.com" class="nav-cta">Get in touch</a>
   </nav>
 
   <!-- ══ HERO ══ -->
