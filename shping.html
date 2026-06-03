@@ -90,6 +90,8 @@
     /* ── Image system · flat editorial (frameless, blends into the page) ── */
     .shot { width: 100%; display: block; }
     .frame { position: relative; border-radius: 10px; overflow: hidden; }
+    /* ── Featured video · flat editorial (rounded only, no card/border/shadow) ── */
+    .cs-video { width: 100%; display: block; border-radius: 12px; background: var(--bg-soft2); }
     .glow-wrap { position: relative; }
     .glow-wrap > * { position: relative; z-index: 1; }
 
@@ -288,6 +290,24 @@
       <div class="frame">
         <img class="shot" src="public/projects/shping/Cover.png" alt="Shping — consumer rewards app, Shop like a Boss" loading="eager" />
       </div>
+    </div>
+  </section>
+
+  <!-- ══ 01b · PRODUCT CONTEXT (intro video) ══ -->
+  <section class="section">
+    <div class="container">
+      <div class="sec-head reveal">
+        <div class="section-label">01 — Product context</div>
+        <h2>Understanding the<br/>Shping ecosystem.</h2>
+        <p>Before redesigning the experience, it was important to understand how Shping creates value for both consumers and brands. Shping is Australia's largest rewards and engagement platform, allowing users to earn rewards through everyday shopping activities such as reviewing products, scanning receipts, completing tasks, and engaging with branded content.</p>
+        <p style="margin-top:14px;">This short introduction provides context for the product, business model, and user journey that informed the redesign decisions showcased throughout this case study.</p>
+      </div>
+    </div>
+    <div class="container-wide reveal-scale" style="padding-bottom:90px;">
+      <video class="cs-video" controls preload="metadata" playsinline poster="public/projects/shping/Cover.png">
+        <source src="public/projects/shping/Introduction%20video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
 
