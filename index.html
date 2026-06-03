@@ -68,8 +68,13 @@
        SELECTED WORK — main section
     ══════════════════════════════ */
     .work-section{border-bottom:1px solid rgba(10,10,10,.12);}
+    /* Constrained editorial container — curated, not edge-to-edge on ultra-wide */
+    .work-inner{max-width:1680px;margin:0 auto;padding-inline:48px;}
+    @media(min-width:1800px){.work-inner{padding-inline:64px;}}
+    @media(max-width:1024px){.work-inner{padding-inline:32px;}}
+    @media(max-width:600px){.work-inner{padding-inline:20px;}}
 
-    .work-hdr{padding:72px 32px 56px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(10,10,10,.08);}
+    .work-hdr{padding:72px 0 56px;display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid rgba(10,10,10,.08);}
     .work-hdr-left{}
     .work-hdr-label{font-family:var(--mono);font-size:.62rem;color:#888;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
     .work-hdr-label::before{content:'';display:block;width:18px;height:1px;background:#888;}
@@ -163,7 +168,7 @@
 
     @media(max-width:900px){
       .wgrid-2,.wgrid-3{grid-template-columns:1fr;}
-      .work-hdr{flex-direction:column;gap:16px;align-items:flex-start;padding:48px 24px 40px;}
+      .work-hdr{flex-direction:column;gap:16px;align-items:flex-start;padding:48px 0 40px;}
       .work-hdr-right{text-align:left;}
       .work-hdr-desc{text-align:left;max-width:100%;}
       .split-section{grid-template-columns:1fr;}
@@ -231,6 +236,7 @@
        SELECTED WORK — primary section
   ══════════════════════════════════════ -->
   <section class="work-section rev" id="selected-work">
+   <div class="work-inner">
 
     <div class="work-hdr">
       <div class="work-hdr-left">
@@ -431,6 +437,7 @@
         </div>
       </a>
     </div>
+   </div>
   </section>
 
   <!-- ── Statement ── -->
