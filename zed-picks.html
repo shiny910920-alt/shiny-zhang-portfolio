@@ -6,7 +6,7 @@
   <title>ZED Picks — Shiny Zhang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,7 +14,7 @@
     body {
       background: #000;
       color: #fff;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter','Helvetica Neue',Arial,sans-serif;
       overflow-x: hidden;
       cursor: none;
       -webkit-font-smoothing: antialiased;
@@ -34,7 +34,7 @@
       --white-04: rgba(255,255,255,.04);
       --surface: rgba(255,255,255,.04);
       --border: rgba(255,255,255,.08);
-      --mono: 'DM Mono', monospace;
+      --mono: 'Inter','Helvetica Neue',Arial,sans-serif;
     }
 
     /* ── Cursor ── */
@@ -55,10 +55,10 @@
 
     /* ===== GLOBAL PORTFOLIO NAV — shared component · literal colours · do NOT override per project ===== */
     .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:transparent;}
-    .site-nav__logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:#0A0A0A;text-decoration:none;}
+    .site-nav__logo{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:#0A0A0A;text-decoration:none;}
     .site-nav--dark .site-nav__logo{color:#FFFDFD;}
     .site-nav__pills{display:flex;gap:8px;}
-    .site-nav__pill{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s ease,background .2s ease;display:inline-block;}
+    .site-nav__pill{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-size:.75rem;font-weight:600;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s ease,background .2s ease;display:inline-block;}
     .site-nav__pill:hover{transform:scale(1.06);}
     .site-nav__pill--home{background:#CCFF00;color:#0A0A0A;}
     .site-nav__pill--about{background:#00FF85;color:#0A0A0A;}
@@ -115,8 +115,8 @@
     @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
 
     .hero-title {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(4.5rem, 12vw, 13rem);
+      font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800;
+      font-size: clamp(3.2rem, 9vw, 9rem);
       letter-spacing: -.04em; line-height: .88;
       color: #fff;
     }
@@ -130,11 +130,11 @@
     }
     .hero-meta-item { }
     .hero-meta-label { font-family: var(--mono); font-size: .58rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
-    .hero-meta-val { font-family: 'Syne', sans-serif; font-weight: 600; font-size: .95rem; color: #fff; }
+    .hero-meta-val { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 600; font-size: .95rem; color: #fff; }
 
     .hero-summary {
       max-width: 560px; margin-top: 0;
-      font-family: 'DM Sans', sans-serif; font-size: 1.05rem; line-height: 1.75;
+      font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: 1.05rem; line-height: 1.75;
       color: var(--white-70); font-weight: 300;
     }
 
@@ -155,30 +155,30 @@
 
     /* ── Overview ── */
     .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 100px 0; }
-    .overview-left h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5vw, 4.5rem); letter-spacing: -.04em; line-height: 1; margin: 20px 0 28px; }
-    .overview-left p { font-family: 'DM Sans', sans-serif; font-size: .95rem; line-height: 1.85; color: var(--white-70); }
+    .overview-left h2 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -.04em; line-height: 1; margin: 20px 0 28px; }
+    .overview-left p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .95rem; line-height: 1.85; color: var(--white-70); }
     .overview-left p + p { margin-top: 16px; }
 
     .overview-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 10px; overflow: hidden; }
     .overview-card { background: #0a0a0a; padding: 24px 28px; display: flex; gap: 20px; align-items: flex-start; transition: background .2s; }
     .overview-card:hover { background: rgba(129,218,148,.04); }
     .overview-card-icon { width: 36px; height: 36px; border: 1px solid var(--green-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .overview-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .92rem; margin-bottom: 5px; }
-    .overview-card-body { font-family: 'DM Sans', sans-serif; font-size: .82rem; line-height: 1.7; color: var(--white-50); }
+    .overview-card-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: .92rem; margin-bottom: 5px; }
+    .overview-card-body { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .82rem; line-height: 1.7; color: var(--white-50); }
 
     /* ── Stat row ── */
     .stats-row { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--border); }
     .stat-cell { padding: 60px 40px; border-right: 1px solid var(--border); }
     .stat-cell:last-child { border-right: none; }
-    .stat-number { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3rem,6vw,5.5rem); letter-spacing: -.06em; line-height: 1; color: #fff; }
+    .stat-number { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(2.2rem,4.6vw,4.2rem); letter-spacing: -.06em; line-height: 1; color: #fff; }
     .stat-number.green { color: var(--green); }
-    .stat-label { font-family: 'DM Sans', sans-serif; font-size: .88rem; color: var(--white-50); margin-top: 12px; line-height: 1.6; max-width: 240px; }
+    .stat-label { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .88rem; color: var(--white-50); margin-top: 12px; line-height: 1.6; max-width: 240px; }
 
     /* ── Two col section ── */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
     .col-block { background: #000; padding: 72px 56px; }
-    .col-block h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.6rem,3vw,2.6rem); letter-spacing: -.04em; line-height: 1.05; margin: 20px 0 20px; }
-    .col-block p { font-family: 'DM Sans', sans-serif; font-size: .9rem; line-height: 1.85; color: var(--white-70); }
+    .col-block h3 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(1.6rem,3vw,2.6rem); letter-spacing: -.04em; line-height: 1.05; margin: 20px 0 20px; }
+    .col-block p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .9rem; line-height: 1.85; color: var(--white-70); }
     .col-block p + p { margin-top: 14px; }
 
     /* ── Process steps ── */
@@ -186,24 +186,24 @@
     .process-step { background: #000; padding: 40px 28px; transition: background .3s; }
     .process-step:hover { background: rgba(129,218,148,.03); }
     .ps-num { font-family: var(--mono); font-size: .58rem; color: var(--green); letter-spacing: .1em; margin-bottom: 20px; }
-    .ps-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
-    .ps-body { font-family: 'DM Sans', sans-serif; font-size: .8rem; line-height: 1.75; color: var(--white-50); }
+    .ps-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 10px; }
+    .ps-body { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .8rem; line-height: 1.75; color: var(--white-50); }
 
     /* ── Quote block ── */
     .quote-block { padding: 100px 0; max-width: 860px; }
-    .quote-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 3rem); letter-spacing: -.03em; line-height: 1.2; color: #fff; }
+    .quote-text { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: clamp(1.4rem, 3vw, 2.4rem); letter-spacing: -.03em; line-height: 1.2; color: #fff; }
     .quote-text em { color: var(--green); font-style: normal; }
 
     /* ── Persona grid ── */
     .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
     .persona-card { background: #000; padding: 44px 40px; transition: background .3s; }
     .persona-card:hover { background: rgba(129,218,148,.025); }
-    .persona-initial { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: .9rem; margin-bottom: 20px; }
-    .persona-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; margin-bottom: 4px; }
+    .persona-initial { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: .9rem; margin-bottom: 20px; }
+    .persona-name { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: 1.15rem; margin-bottom: 4px; }
     .persona-role { font-family: var(--mono); font-size: .6rem; color: var(--white-50); letter-spacing: .06em; margin-bottom: 18px; text-transform: uppercase; }
-    .persona-body { font-family: 'DM Sans', sans-serif; font-size: .85rem; line-height: 1.8; color: var(--white-70); margin-bottom: 20px; }
+    .persona-body { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .85rem; line-height: 1.8; color: var(--white-70); margin-bottom: 20px; }
     .persona-needs { display: flex; flex-direction: column; gap: 8px; }
-    .persona-need { font-family: 'DM Sans', sans-serif; font-size: .8rem; color: var(--white-50); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+    .persona-need { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .8rem; color: var(--white-50); display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
     .persona-need::before { content: '↗'; color: var(--green); flex-shrink: 0; font-size: .7rem; margin-top: 1px; }
 
     /* ── Journey ── */
@@ -213,8 +213,8 @@
     .journey-step::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--green); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
     .journey-step:hover::after { transform: scaleX(1); }
     .js-phase { font-family: var(--mono); font-size: .58rem; color: var(--green); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
-    .js-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; margin-bottom: 12px; }
-    .js-body { font-family: 'DM Sans', sans-serif; font-size: .82rem; line-height: 1.75; color: var(--white-50); }
+    .js-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: 1.05rem; margin-bottom: 12px; }
+    .js-body { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .82rem; line-height: 1.75; color: var(--white-50); }
     .js-emotion { margin-top: 20px; display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: .58rem; color: var(--white-50); }
     .js-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
@@ -253,14 +253,14 @@
     .feature-row .fr-media .zed-shot { width: 100%; }
     .feature-row .fr-label { font-family: var(--mono); font-size: .6rem; color: var(--green); letter-spacing: .14em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
     .feature-row .fr-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--green); }
-    .feature-row .fr-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.8rem,3.4vw,2.8rem); letter-spacing: -.03em; line-height: 1.04; margin-bottom: 20px; }
-    .feature-row .fr-body { font-family: 'DM Sans', sans-serif; font-size: .92rem; line-height: 1.85; color: var(--white-70); font-weight: 300; }
+    .feature-row .fr-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(1.8rem,3.4vw,2.8rem); letter-spacing: -.03em; line-height: 1.04; margin-bottom: 20px; }
+    .feature-row .fr-body { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .92rem; line-height: 1.85; color: var(--white-70); font-weight: 300; }
     .feature-row .fr-body + .fr-body { margin-top: 14px; }
-    .feature-row .fr-kicker { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.01em; color: #fff; margin-bottom: 14px; }
+    .feature-row .fr-kicker { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: 1.05rem; letter-spacing: -.01em; color: #fff; margin-bottom: 14px; }
     .feature-row .fr-list-label { font-family: var(--mono); font-size: .56rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; margin-top: 24px; }
     .feature-row .fr-outcomes { list-style: none; margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
     .feature-row .fr-list-label + .fr-outcomes { margin-top: 12px; }
-    .feature-row .fr-outcomes li { font-family: 'DM Sans', sans-serif; font-size: .88rem; color: var(--white-70); display: flex; align-items: flex-start; gap: 12px; line-height: 1.5; }
+    .feature-row .fr-outcomes li { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .88rem; color: var(--white-70); display: flex; align-items: flex-start; gap: 12px; line-height: 1.5; }
     .feature-row .fr-outcomes li::before { content: ''; flex-shrink: 0; width: 16px; height: 16px; margin-top: 1px; border-radius: 4px; background: rgba(129,218,148,.14); border: 1px solid rgba(129,218,148,.4); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2381DA94' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
     .feature-row.flip .fr-media { order: 2; }
     @media (max-width: 860px) { .feature-row, .feature-row.flip { grid-template-columns: 1fr; gap: 32px; } .feature-row.flip .fr-media { order: 0; } }
@@ -268,20 +268,20 @@
     /* ── Screens showcase ── */
     .screens-section { padding: 100px 0; }
     .screens-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; }
-    .screens-header h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem,4vw,3.5rem); letter-spacing: -.04em; line-height: 1; }
-    .screens-header p { font-family: 'DM Sans', sans-serif; font-size: .88rem; color: var(--white-50); max-width: 320px; text-align: right; line-height: 1.7; }
+    .screens-header h2 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(1.7rem,3.4vw,2.9rem); letter-spacing: -.04em; line-height: 1; }
+    .screens-header p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .88rem; color: var(--white-50); max-width: 320px; text-align: right; line-height: 1.7; }
 
     .screens-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
     .screen-card { background: #0a0a0a; padding: 40px; display: flex; flex-direction: column; gap: 20px; }
     .screen-card-wide { grid-column: 1 / -1; }
     .screen-label-row { display: flex; justify-content: space-between; align-items: center; }
-    .screen-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .92rem; }
+    .screen-name { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: .92rem; }
     .screen-type { font-family: var(--mono); font-size: .58rem; color: var(--white-50); letter-spacing: .08em; text-transform: uppercase; }
     .screen-img-wrap { border-radius: 8px; overflow: hidden; background: #111; border: 1px solid var(--border); position: relative; }
     .screen-img-wrap::after { content: ''; position: absolute; inset: 0; border-radius: 8px; box-shadow: inset 0 0 0 1px rgba(129,218,148,.08); pointer-events: none; }
     .screen-img-phone { max-width: 200px; margin: 0 auto; display: block; }
     .screen-phone-wrap { background: #0d0d0d; padding: 48px; display: flex; align-items: center; justify-content: center; }
-    .screen-desc { font-family: 'DM Sans', sans-serif; font-size: .82rem; color: var(--white-50); line-height: 1.7; }
+    .screen-desc { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .82rem; color: var(--white-50); line-height: 1.7; }
 
     /* ── Impact numbers ── */
     .impact-section { background: #000; border-top: 1px solid var(--border); }
@@ -289,27 +289,27 @@
     .impact-grid { display: grid; grid-template-columns: repeat(4,1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--border); margin-top: 56px; }
     .impact-cell { background: #050505; padding: 48px 36px; border-right: 1px solid var(--border); }
     .impact-cell:last-child { border-right: none; }
-    .impact-n { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem,5vw,4.5rem); letter-spacing: -.05em; line-height: 1; color: var(--green); }
-    .impact-l { font-family: 'DM Sans', sans-serif; font-size: .85rem; color: var(--white-50); margin-top: 10px; line-height: 1.65; max-width: 180px; }
+    .impact-n { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(2rem,4vw,3.6rem); letter-spacing: -.05em; line-height: 1; color: var(--green); }
+    .impact-l { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .85rem; color: var(--white-50); margin-top: 10px; line-height: 1.65; max-width: 180px; }
 
     /* ── Reflection ── */
     .reflection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; padding: 100px 0; align-items: start; }
-    .reflection-left h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem,4vw,3.5rem); letter-spacing: -.04em; line-height: 1; margin: 20px 0 24px; }
-    .reflection-left p { font-family: 'DM Sans', sans-serif; font-size: .9rem; line-height: 1.85; color: var(--white-70); }
+    .reflection-left h2 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(1.7rem,3.4vw,2.9rem); letter-spacing: -.04em; line-height: 1; margin: 20px 0 24px; }
+    .reflection-left p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .9rem; line-height: 1.85; color: var(--white-70); }
     .reflection-cards { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 10px; overflow: hidden; }
     .reflection-card { background: #080808; padding: 28px 32px; transition: background .25s; }
     .reflection-card:hover { background: rgba(129,218,148,.04); }
-    .rc-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .rc-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: .95rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
     .rc-title::before { content: ''; display: block; width: 3px; height: 16px; background: var(--green); border-radius: 2px; flex-shrink: 0; }
-    .rc-body { font-family: 'DM Sans', sans-serif; font-size: .83rem; line-height: 1.75; color: var(--white-50); }
+    .rc-body { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .83rem; line-height: 1.75; color: var(--white-50); }
 
     /* ── Next project ── */
     .next-section { padding: 120px 0; position: relative; z-index: 1; }
     .next-inner { display: flex; justify-content: space-between; align-items: flex-end; }
     .next-label { font-family: var(--mono); font-size: .6rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
-    .next-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem,6vw,6rem); letter-spacing: -.05em; line-height: .88; }
+    .next-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(2rem,5vw,4.6rem); letter-spacing: -.05em; line-height: .88; }
     .next-btn {
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+      font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
       padding: 16px 32px; border: 1px solid var(--green-border); color: var(--green); text-decoration: none;
       border-radius: 4px; transition: background .2s, border-color .2s, color .2s; white-space: nowrap;
     }
@@ -317,7 +317,7 @@
 
     /* ── Footer ── */
     .cs-footer { border-top: 1px solid var(--border); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
-    .cs-footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; text-decoration: none; }
+    .cs-footer-logo { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; text-decoration: none; }
     .cs-footer-links { display: flex; gap: 24px; }
     .cs-footer-links a { font-family: var(--mono); font-size: .6rem; color: var(--white-50); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
     .cs-footer-links a:hover { color: #fff; }
@@ -329,12 +329,12 @@
     .video-header { margin-bottom: 52px; }
     .video-header .section-label { margin-bottom: 20px; }
     .video-header h2 {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: -.04em; line-height: 1;
+      font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800;
+      font-size: clamp(1.7rem, 3.4vw, 2.9rem); letter-spacing: -.04em; line-height: 1;
       color: #fff; margin-bottom: 16px;
     }
     .video-header p {
-      font-family: 'DM Sans', sans-serif; font-size: .95rem;
+      font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .95rem;
       line-height: 1.8; color: var(--white-50); max-width: 520px;
     }
     .video-wrap {
@@ -576,7 +576,7 @@
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:64px;">
       <div class="section-label reveal">04 — Process</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 48px;">Design process.</h2>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 48px;">Design process.</h2>
     </div>
     <div class="process-row reveal">
       <div class="process-step">
@@ -611,7 +611,7 @@
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:64px;">
       <div class="section-label reveal">05 — Personas</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 48px;">Who we designed for.</h2>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 48px;">Who we designed for.</h2>
     </div>
     <div class="persona-grid reveal">
       <div class="persona-card">
@@ -665,8 +665,8 @@
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:64px;">
       <div class="section-label reveal">06 — User Journey</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">From discovery<br/>to return.</h2>
-      <p class="reveal" style="font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--white-50);max-width:480px;line-height:1.75;margin-bottom:48px;transition-delay:.1s">Mapping the end-to-end experience for Jordan — the Casual Bettor — from first discovery through to placing his first bet and coming back.</p>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">From discovery<br/>to return.</h2>
+      <p class="reveal" style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.9rem;color:var(--white-50);max-width:480px;line-height:1.75;margin-bottom:48px;transition-delay:.1s">Mapping the end-to-end experience for Jordan — the Casual Bettor — from first discovery through to placing his first bet and coming back.</p>
     </div>
     <div class="journey-grid reveal">
       <div class="journey-step">
@@ -826,8 +826,8 @@
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:64px;">
       <div class="section-label reveal">08 — Design System</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">System &amp; tokens.</h2>
-      <p class="reveal" style="font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--white-50);max-width:520px;line-height:1.75;margin-bottom:48px;transition-delay:.1s">A scalable dark-first design system built to serve both ZED Picks and the broader ZED RUN ecosystem — logo, colour, type, and a library of graphic elements.</p>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">System &amp; tokens.</h2>
+      <p class="reveal" style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.9rem;color:var(--white-50);max-width:520px;line-height:1.75;margin-bottom:48px;transition-delay:.1s">A scalable dark-first design system built to serve both ZED Picks and the broader ZED RUN ecosystem — logo, colour, type, and a library of graphic elements.</p>
     </div>
 
     <!-- Logo / brand mark — full width -->
@@ -858,8 +858,8 @@
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:48px;">
       <div class="section-label reveal">09 — Marketing &amp; Campaign</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">Taking it to market.</h2>
-      <p class="reveal" style="font-family:'DM Sans',sans-serif;font-size:.9rem;color:var(--white-50);max-width:540px;line-height:1.75;transition-delay:.1s">Campaign artwork and promotional visuals extend the product world beyond the app — carrying the same energy into launch and acquisition.</p>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">Taking it to market.</h2>
+      <p class="reveal" style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.9rem;color:var(--white-50);max-width:540px;line-height:1.75;transition-delay:.1s">Campaign artwork and promotional visuals extend the product world beyond the app — carrying the same energy into launch and acquisition.</p>
     </div>
 
     <!-- Banner — full width -->
@@ -884,26 +884,26 @@
       <div class="reveal" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
         <div>
           <div class="section-label">10 — Interaction</div>
-          <h2 style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 24px;">Motion as<br/>communication.</h2>
-          <p style="font-family:'DM Sans',sans-serif;font-size:.9rem;line-height:1.85;color:var(--white-70);">Every interaction in ZED Picks was designed to amplify the emotional arc of placing a bet and watching a race. The micro-interaction system makes each tap feel responsive and rewarding — driving engagement through feedback loops and celebratory moments.</p>
-          <p style="font-family:'DM Sans',sans-serif;font-size:.9rem;line-height:1.85;color:var(--white-70);margin-top:16px;">Motion design plays a central role: race animations build tension, win states erupt with satisfying particle effects, and the live race progress bar creates edge-of-seat engagement even for a race lasting under 60 seconds.</p>
+          <h2 style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 24px;">Motion as<br/>communication.</h2>
+          <p style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.9rem;line-height:1.85;color:var(--white-70);">Every interaction in ZED Picks was designed to amplify the emotional arc of placing a bet and watching a race. The micro-interaction system makes each tap feel responsive and rewarding — driving engagement through feedback loops and celebratory moments.</p>
+          <p style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.9rem;line-height:1.85;color:var(--white-70);margin-top:16px;">Motion design plays a central role: race animations build tension, win states erupt with satisfying particle effects, and the live race progress bar creates edge-of-seat engagement even for a race lasting under 60 seconds.</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:1px;background:var(--border);border-radius:10px;overflow:hidden;">
           <div style="background:#080808;padding:24px 28px;">
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;margin-bottom:7px;display:flex;align-items:center;gap:10px;"><span style="width:3px;height:16px;background:var(--green);border-radius:2px;display:block;flex-shrink:0;"></span>Countdown Timer</div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--white-50);line-height:1.7;">Animated countdown with colour-shifting urgency: neutral → yellow → green as race approaches. Drives pick commitment naturally.</div>
+            <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.92rem;margin-bottom:7px;display:flex;align-items:center;gap:10px;"><span style="width:3px;height:16px;background:var(--green);border-radius:2px;display:block;flex-shrink:0;"></span>Countdown Timer</div>
+            <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.82rem;color:var(--white-50);line-height:1.7;">Animated countdown with colour-shifting urgency: neutral → yellow → green as race approaches. Drives pick commitment naturally.</div>
           </div>
           <div style="background:#080808;padding:24px 28px;">
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;margin-bottom:7px;display:flex;align-items:center;gap:10px;"><span style="width:3px;height:16px;background:var(--green);border-radius:2px;display:block;flex-shrink:0;"></span>Horse Selection</div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--white-50);line-height:1.7;">Card expansion on tap with spring physics. Selected horse pulses with a glow ring — creating ownership and investment before the race starts.</div>
+            <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.92rem;margin-bottom:7px;display:flex;align-items:center;gap:10px;"><span style="width:3px;height:16px;background:var(--green);border-radius:2px;display:block;flex-shrink:0;"></span>Horse Selection</div>
+            <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.82rem;color:var(--white-50);line-height:1.7;">Card expansion on tap with spring physics. Selected horse pulses with a glow ring — creating ownership and investment before the race starts.</div>
           </div>
           <div style="background:#080808;padding:24px 28px;">
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;margin-bottom:7px;display:flex;align-items:center;gap:10px;"><span style="width:3px;height:16px;background:var(--green);border-radius:2px;display:block;flex-shrink:0;"></span>Live Race Progress</div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--white-50);line-height:1.7;">Real-time position bars with eased movement. Lead changes trigger haptic feedback on iOS, creating physical connection to the result.</div>
+            <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.92rem;margin-bottom:7px;display:flex;align-items:center;gap:10px;"><span style="width:3px;height:16px;background:var(--green);border-radius:2px;display:block;flex-shrink:0;"></span>Live Race Progress</div>
+            <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.82rem;color:var(--white-50);line-height:1.7;">Real-time position bars with eased movement. Lead changes trigger haptic feedback on iOS, creating physical connection to the result.</div>
           </div>
           <div style="background:#080808;padding:24px 28px;">
-            <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;margin-bottom:7px;display:flex;align-items:center;gap:10px;"><span style="width:3px;height:16px;background:var(--green);border-radius:2px;display:block;flex-shrink:0;"></span>Win / Loss States</div>
-            <div style="font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--white-50);line-height:1.7;">Win: particle burst, screen glow, points counter. Loss: muted transition, immediate "Race Again" CTA to keep momentum alive.</div>
+            <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.92rem;margin-bottom:7px;display:flex;align-items:center;gap:10px;"><span style="width:3px;height:16px;background:var(--green);border-radius:2px;display:block;flex-shrink:0;"></span>Win / Loss States</div>
+            <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.82rem;color:var(--white-50);line-height:1.7;">Win: particle burst, screen glow, points counter. Loss: muted transition, immediate "Race Again" CTA to keep momentum alive.</div>
           </div>
         </div>
       </div>
@@ -914,7 +914,7 @@
   <section class="impact-section section">
     <div class="container impact-inner">
       <div class="section-label reveal">11 — Results &amp; Impact</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">Business<br/>value.</h2>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">Business<br/>value.</h2>
       <div class="impact-grid reveal" style="transition-delay:.15s">
         <div class="impact-cell">
           <div class="impact-n">56%</div>

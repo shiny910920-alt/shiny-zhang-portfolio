@@ -7,12 +7,12 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    :root{--bg:#FFFDFD;--ink:#0A0A0A;--y:#CCFF00;--p:#FF2787;--g:#00FF85;--mono:'DM Mono',monospace;}
+    :root{--bg:#FFFDFD;--ink:#0A0A0A;--y:#CCFF00;--p:#FF2787;--g:#00FF85;--mono:'Inter','Helvetica Neue',Arial,sans-serif;}
     *{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
-    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none;}
+    body{background:var(--bg);color:var(--ink);font-family:'Inter','Helvetica Neue',Arial,sans-serif;overflow-x:hidden;cursor:none;}
 
     #cur{position:fixed;width:12px;height:12px;background:var(--ink);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);z-index:9999;transition:width .2s,height .2s;mix-blend-mode:difference;}
     #cur.big{width:48px;height:48px;}
@@ -20,10 +20,10 @@
 
     /* ===== GLOBAL PORTFOLIO NAV — shared component · literal colours · do NOT override per project ===== */
     .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:transparent;}
-    .site-nav__logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:#0A0A0A;text-decoration:none;}
+    .site-nav__logo{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:#0A0A0A;text-decoration:none;}
     .site-nav--dark .site-nav__logo{color:#FFFDFD;}
     .site-nav__pills{display:flex;gap:8px;}
-    .site-nav__pill{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s ease,background .2s ease;display:inline-block;}
+    .site-nav__pill{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-size:.75rem;font-weight:600;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s ease,background .2s ease;display:inline-block;}
     .site-nav__pill:hover{transform:scale(1.06);}
     .site-nav__pill--home{background:#CCFF00;color:#0A0A0A;}
     .site-nav__pill--about{background:#00FF85;color:#0A0A0A;}
@@ -41,7 +41,7 @@
     .ai-dot{width:5px;height:5px;background:var(--g);border-radius:50%;animation:pulse 1.4s ease-in-out infinite;}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
     .hero-name{position:relative;z-index:2;padding:0 24px;line-height:.88;}
-    .display{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(5rem,19.5vw,26rem);letter-spacing:-.03em;color:var(--ink);display:block;white-space:nowrap;}
+    .display{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(3.5rem,13vw,17rem);letter-spacing:-.03em;color:var(--ink);display:block;white-space:nowrap;}
     .display.glitch-ready:hover{animation:glitch .35s steps(1) forwards;}
     @keyframes glitch{
       0%{clip-path:inset(0 0 96% 0);transform:translate(-3px,0) skewX(-2deg);color:var(--p);}
@@ -53,15 +53,15 @@
     }
     .tm{font-size:.28em;vertical-align:super;letter-spacing:0;}
     .hero-sub{position:relative;z-index:2;padding:24px 32px 0;display:flex;justify-content:space-between;align-items:flex-end;}
-    .hero-role{font-family:'DM Sans',sans-serif;font-size:clamp(.85rem,1.6vw,1.1rem);font-weight:300;max-width:420px;line-height:1.6;color:#333;}
-    .hero-btn{display:inline-block;font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 28px;background:var(--ink);color:var(--bg);text-decoration:none;transition:background .15s;}
+    .hero-role{font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:clamp(.85rem,1.6vw,1.1rem);font-weight:300;max-width:420px;line-height:1.6;color:#333;}
+    .hero-btn{display:inline-block;font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:14px 28px;background:var(--ink);color:var(--bg);text-decoration:none;transition:background .15s;}
     .hero-btn:hover{background:var(--p);}
 
     /* ── Marquee ── */
     .marquee-wrap{border-top:1px solid rgba(10,10,10,.15);border-bottom:1px solid rgba(10,10,10,.15);overflow:hidden;background:var(--ink);}
     .marquee-track{display:flex;gap:0;animation:scroll 24s linear infinite;white-space:nowrap;}
     @keyframes scroll{to{transform:translateX(-50%);}}
-    .mq-item{display:inline-flex;align-items:center;gap:32px;padding:14px 40px;font-family:'Syne',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,230,220,.45);}
+    .mq-item{display:inline-flex;align-items:center;gap:32px;padding:14px 40px;font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,230,220,.45);}
     .mq-item span{color:var(--y);font-size:1rem;}
 
     /* ══════════════════════════════
@@ -73,10 +73,10 @@
     .work-hdr-left{}
     .work-hdr-label{font-family:var(--mono);font-size:.62rem;color:#888;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
     .work-hdr-label::before{content:'';display:block;width:18px;height:1px;background:#888;}
-    .work-hdr-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3rem,8vw,8rem);letter-spacing:-.04em;line-height:.9;}
+    .work-hdr-title{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(2.4rem,6vw,6rem);letter-spacing:-.04em;line-height:.9;}
     .work-hdr-count{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1.5px solid var(--ink);border-radius:50%;font-family:var(--mono);font-size:.65rem;vertical-align:super;margin-left:10px;}
     .work-hdr-right{text-align:right;padding-bottom:6px;}
-    .work-hdr-desc{font-family:'DM Sans',sans-serif;font-size:.88rem;color:#666;line-height:1.7;max-width:300px;text-align:right;}
+    .work-hdr-desc{font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.88rem;color:#666;line-height:1.7;max-width:300px;text-align:right;}
 
     /* Featured card — full width */
     .wcard-featured{position:relative;overflow:hidden;cursor:pointer;border-bottom:1px solid rgba(10,10,10,.08);}
@@ -85,7 +85,7 @@
     .wcard-featured:hover .visual .bg{transform:scale(1.03);}
     .wcard-featured .overlay{position:absolute;inset:0;background:rgba(10,10,10,0);transition:background .35s ease;display:flex;align-items:flex-end;padding:40px;}
     .wcard-featured:hover .overlay{background:rgba(10,10,10,.5);}
-    .wcard-featured .cta-badge{opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease;font-family:'Syne',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:12px 24px;background:var(--bg);color:var(--ink);}
+    .wcard-featured .cta-badge{opacity:0;transform:translateY(8px);transition:opacity .3s ease,transform .3s ease;font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;padding:12px 24px;background:var(--bg);color:var(--ink);}
     .wcard-featured:hover .cta-badge{opacity:1;transform:translateY(0);}
     .wcard-featured .meta-bar{padding:20px 32px 24px;display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid rgba(10,10,10,.06);}
     .wcard-featured .meta-left-info{display:flex;flex-direction:column;gap:4px;}
@@ -100,11 +100,11 @@
     .wcard .wcard-num{font-family:var(--mono);font-size:.58rem;color:#bbb;letter-spacing:.06em;}
     .wcard .wcard-cats{display:flex;gap:6px;flex-wrap:wrap;}
     .wcard-cat{font-family:var(--mono);font-size:.55rem;color:#888;border:1px solid rgba(10,10,10,.12);padding:2px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:.04em;}
-    .wcard .wcard-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.1rem,2.2vw,1.7rem);letter-spacing:-.03em;line-height:1.1;}
+    .wcard .wcard-name{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1rem,2vw,1.45rem);letter-spacing:-.03em;line-height:1.1;}
     .wcard .wcard-role{font-family:var(--mono);font-size:.58rem;color:#999;letter-spacing:.04em;}
-    .wcard .wcard-desc{font-family:'DM Sans',sans-serif;font-size:.82rem;color:#555;line-height:1.7;}
+    .wcard .wcard-desc{font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.82rem;color:#555;line-height:1.7;}
     .wcard .wcard-cta{margin-top:auto;padding-top:14px;border-top:1px solid rgba(10,10,10,.08);display:flex;align-items:center;justify-content:space-between;}
-    .wcard-cta-label{font-family:'Syne',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);transition:color .2s;}
+    .wcard-cta-label{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);transition:color .2s;}
     .wcard:hover .wcard-cta-label{color:var(--p);}
     .wcard-cta-arrow{font-size:.9rem;transition:transform .2s;}
     .wcard:hover .wcard-cta-arrow{transform:translate(4px,-4px);}
@@ -124,30 +124,30 @@
 
     /* ── Statement ── */
     .statement{padding:80px 32px;border-top:1px solid rgba(10,10,10,.12);}
-    .statement h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,5.5vw,5.5rem);letter-spacing:-.03em;line-height:1.05;max-width:940px;}
+    .statement h2{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.8rem,4.5vw,4.2rem);letter-spacing:-.03em;line-height:1.05;max-width:940px;}
     .ul-y{text-decoration:underline;text-decoration-color:var(--y);text-underline-offset:6px;}
     .ul-p{text-decoration:underline;text-decoration-color:var(--p);text-underline-offset:6px;}
 
     /* ── Clients ── */
     .clients-strip{border-top:1px solid rgba(10,10,10,.12);border-bottom:1px solid rgba(10,10,10,.12);padding:32px;display:flex;gap:48px;overflow-x:auto;scrollbar-width:none;align-items:center;}
     .clients-strip::-webkit-scrollbar{display:none;}
-    .client-name{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.01em;color:rgba(10,10,10,.22);white-space:nowrap;transition:color .2s;cursor:default;}
+    .client-name{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.01em;color:rgba(10,10,10,.22);white-space:nowrap;transition:color .2s;cursor:default;}
     .client-name:hover{color:var(--ink);}
 
     /* ── Split section ── */
     .split-section{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(10,10,10,.12);}
     .split-left{padding:64px 32px;border-right:1px solid rgba(10,10,10,.12);}
     .split-right{padding:64px 32px;background:var(--ink);color:var(--bg);}
-    .split-big{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.5rem,6vw,6rem);letter-spacing:-.03em;line-height:.95;}
+    .split-big{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(2rem,5vw,4.6rem);letter-spacing:-.03em;line-height:.95;}
     .ai-tag{display:inline-block;background:var(--y);color:var(--ink);font-family:var(--mono);font-size:.6rem;font-weight:500;padding:4px 10px;margin-bottom:20px;}
     .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:48px;background:rgba(255,255,255,.08);}
     .stat-cell{padding:20px;background:var(--ink);}
-    .stat-n{font-family:'Syne',sans-serif;font-weight:800;font-size:2.5rem;letter-spacing:-.04em;}
+    .stat-n{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:2.5rem;letter-spacing:-.04em;}
     .stat-l{font-family:var(--mono);font-size:.6rem;color:#777;margin-top:4px;}
 
     /* ── Footer ── */
     footer{border-top:1px solid rgba(10,10,10,.15);padding:32px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;}
-    .f-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;}
+    .f-logo{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:1.1rem;}
     .f-links{display:flex;gap:24px;justify-content:center;}
     .f-links a{font-family:var(--mono);font-size:.65rem;color:#888;text-decoration:none;text-transform:uppercase;letter-spacing:.08em;transition:color .15s;}
     .f-links a:hover{color:var(--ink);}
@@ -256,12 +256,12 @@
       <div class="meta-bar">
         <div class="meta-left-info">
           <div style="font-family:var(--mono);font-size:.58rem;color:#aaa;letter-spacing:.06em;margin-bottom:5px;">01 — CONSUMER REWARDS · AI PRODUCT DESIGN · 2024–PRESENT</div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.3rem,3vw,2.2rem);letter-spacing:-.03em;">Shping — Intelligent Consumer Engagement Ecosystem</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.85rem;color:#555;margin-top:5px;">Reframing one of Australia's largest rewards platforms around value, behaviour design, and AI personalisation — across a two-sided consumer–brand ecosystem.</div>
+          <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.15rem,2.6vw,1.85rem);letter-spacing:-.03em;">Shping — Intelligent Consumer Engagement Ecosystem</div>
+          <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.85rem;color:#555;margin-top:5px;">Reframing one of Australia's largest rewards platforms around value, behaviour design, and AI personalisation — across a two-sided consumer–brand ecosystem.</div>
         </div>
         <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;padding-left:32px;">
           <div style="font-family:var(--mono);font-size:.58rem;color:#aaa;">Senior Product Designer → AI</div>
-          <div style="font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px;">Case Study ↗</div>
+          <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px;">Case Study ↗</div>
         </div>
       </div>
     </div>
@@ -280,12 +280,12 @@
       <div class="meta-bar">
         <div class="meta-left-info">
           <div style="font-family:var(--mono);font-size:.58rem;color:#aaa;letter-spacing:.06em;margin-bottom:5px;">02 — WEB3 · GAMING · MOBILE · 2023</div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.3rem,3vw,2.2rem);letter-spacing:-.03em;">ZED Picks — Web3 Virtual Racing Platform</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.85rem;color:#555;margin-top:5px;">Frictionless mobile-first betting for non-Web3 audiences — scaling ZED RUN's user funnel without crypto barriers.</div>
+          <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.15rem,2.6vw,1.85rem);letter-spacing:-.03em;">ZED Picks — Web3 Virtual Racing Platform</div>
+          <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.85rem;color:#555;margin-top:5px;">Frictionless mobile-first betting for non-Web3 audiences — scaling ZED RUN's user funnel without crypto barriers.</div>
         </div>
         <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;padding-left:32px;">
           <div style="font-family:var(--mono);font-size:.58rem;color:#aaa;">DreamWalk · Senior Product Designer</div>
-          <div style="font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px;">Case Study ↗</div>
+          <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px;">Case Study ↗</div>
         </div>
       </div>
     </div>
@@ -304,12 +304,12 @@
       <div class="meta-bar">
         <div class="meta-left-info">
           <div style="font-family:var(--mono);font-size:.58rem;color:#aaa;letter-spacing:.06em;margin-bottom:5px;">03 — BRANDING · WEB · MOBILE APP</div>
-          <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.3rem,3vw,2.2rem);letter-spacing:-.03em;">Halfmoon — Yoga &amp; Fitness Platform</div>
-          <div style="font-family:'DM Sans',sans-serif;font-size:.85rem;color:#555;margin-top:5px;">An end-to-end project — brand strategy, visual identity, design system, web platform, and mobile app, owned from first idea to delivery.</div>
+          <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.15rem,2.6vw,1.85rem);letter-spacing:-.03em;">Halfmoon — Yoga &amp; Fitness Platform</div>
+          <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.85rem;color:#555;margin-top:5px;">An end-to-end project — brand strategy, visual identity, design system, web platform, and mobile app, owned from first idea to delivery.</div>
         </div>
         <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;padding-left:32px;">
           <div style="font-family:var(--mono);font-size:.58rem;color:#aaa;">End-to-End Designer</div>
-          <div style="font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px;">Case Study ↗</div>
+          <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:1px;">Case Study ↗</div>
         </div>
       </div>
     </div>
@@ -341,8 +341,8 @@
           <div class="bg" style="aspect-ratio:4/3;background:linear-gradient(160deg,#00001a 0%,#001a4d 50%,#003399 80%,#0056cc 100%);display:flex;align-items:center;justify-content:center;">
             <div style="width:180px;height:108px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:12px;display:flex;flex-direction:column;gap:7px;">
               <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="font-family:'DM Mono',monospace;font-size:.48rem;color:rgba(255,255,255,.45);letter-spacing:.1em;">NAB</span>
-                <div style="display:flex;gap:3px;align-items:center;"><div style="width:4px;height:4px;background:#81DA94;border-radius:50%;"></div><span style="font-family:'DM Mono',monospace;font-size:.36rem;color:#81DA94;">SECURE</span></div>
+                <span style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.48rem;color:rgba(255,255,255,.45);letter-spacing:.1em;">NAB</span>
+                <div style="display:flex;gap:3px;align-items:center;"><div style="width:4px;height:4px;background:#81DA94;border-radius:50%;"></div><span style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.36rem;color:#81DA94;">SECURE</span></div>
               </div>
               <div style="display:grid;grid-template-columns:1fr 2fr;gap:5px;flex:1;">
                 <div style="background:rgba(255,255,255,.05);border-radius:2px;"></div>
@@ -399,7 +399,7 @@
         <div class="visual">
           <div class="bg" style="aspect-ratio:4/3;background:linear-gradient(135deg,#003d1a 0%,#00581f 40%,#059669 75%,#34d399 100%);display:flex;align-items:center;justify-content:center;">
             <div style="width:120px;height:72px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:4px;padding:8px;display:flex;flex-direction:column;gap:5px;">
-              <div style="display:flex;justify-content:space-between;align-items:center;"><div style="height:4px;width:36px;background:rgba(255,255,255,.45);border-radius:2px;"></div><span style="font-family:'DM Mono',monospace;font-size:.42rem;color:var(--y);">AI</span></div>
+              <div style="display:flex;justify-content:space-between;align-items:center;"><div style="height:4px;width:36px;background:rgba(255,255,255,.45);border-radius:2px;"></div><span style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.42rem;color:var(--y);">AI</span></div>
               <div style="flex:1;background:rgba(255,255,255,.07);border-radius:2px;"></div>
               <div style="height:5px;background:rgba(204,255,0,.35);border-radius:2px;"></div>
             </div>
@@ -448,7 +448,7 @@
   <section class="statement rev">
     <h2>I'm dedicated to crafting <span class="ul-y">meaningful</span> digital experiences through a multidisciplinary approach — where <span class="ul-p">AI</span>, motion, and strategy collide to build products people love.</h2>
     <div style="display:flex;justify-content:flex-end;margin-top:32px;">
-      <a href="about.html" style="font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:2px;">Discover my approach</a>
+      <a href="about.html" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:2px;">Discover my approach</a>
     </div>
   </section>
 
@@ -470,7 +470,7 @@
     <div class="split-left">
       <div class="ai-tag">AI-ENHANCED DESIGN</div>
       <div class="split-big">Motion<br />that<br />defines.</div>
-      <p style="font-family:'DM Sans';font-size:.9rem;line-height:1.8;color:#555;margin-top:20px;max-width:380px;">I blend traditional UX methodology with AI-assisted workflows — using LLMs for research synthesis, generative tools for concept exploration, and motion systems to bring interfaces to life.</p>
+      <p style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.9rem;line-height:1.8;color:#555;margin-top:20px;max-width:380px;">I blend traditional UX methodology with AI-assisted workflows — using LLMs for research synthesis, generative tools for concept exploration, and motion systems to bring interfaces to life.</p>
       <div style="margin-top:32px;display:flex;flex-direction:column;gap:10px;">
         <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.65rem;color:#666;"><div style="width:6px;height:6px;background:var(--g);border-radius:50%;"></div>AI-assisted research synthesis &amp; ideation</div>
         <div style="display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.65rem;color:#666;"><div style="width:6px;height:6px;background:var(--y);border-radius:50%;"></div>Scalable design systems across platforms</div>

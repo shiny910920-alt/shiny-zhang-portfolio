@@ -6,14 +6,14 @@
   <title>Porsche Sell Direct — Shiny Zhang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       background: #000; color: #fff;
-      font-family: 'DM Sans', sans-serif;
+      font-family: 'Inter','Helvetica Neue',Arial,sans-serif;
       overflow-x: hidden; cursor: none;
       -webkit-font-smoothing: antialiased;
     }
@@ -29,7 +29,7 @@
       --white-20: rgba(255,255,255,.2);
       --border: rgba(255,255,255,.08);
       --surface: rgba(255,255,255,.04);
-      --mono: 'DM Mono', monospace;
+      --mono: 'Inter','Helvetica Neue',Arial,sans-serif;
     }
 
     /* ── Cursor ── */
@@ -42,10 +42,10 @@
     /* ── Nav ── */
     /* ===== GLOBAL PORTFOLIO NAV — shared component · literal colours · do NOT override per project ===== */
     .site-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:20px 32px;background:transparent;}
-    .site-nav__logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:#0A0A0A;text-decoration:none;}
+    .site-nav__logo{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;color:#0A0A0A;text-decoration:none;}
     .site-nav--dark .site-nav__logo{color:#FFFDFD;}
     .site-nav__pills{display:flex;gap:8px;}
-    .site-nav__pill{font-family:'Syne',sans-serif;font-size:.75rem;font-weight:700;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s ease,background .2s ease;display:inline-block;}
+    .site-nav__pill{font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-size:.75rem;font-weight:600;padding:8px 18px;border-radius:999px;text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:transform .15s ease,background .2s ease;display:inline-block;}
     .site-nav__pill:hover{transform:scale(1.06);}
     .site-nav__pill--home{background:#CCFF00;color:#0A0A0A;}
     .site-nav__pill--about{background:#00FF85;color:#0A0A0A;}
@@ -82,38 +82,38 @@
     .hero-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--red); border: 1px solid var(--red-border); padding: 5px 12px; border-radius: 2px; margin-bottom: 28px; }
     .hero-tag-dot { width: 5px; height: 5px; background: var(--red); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
-    .hero-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(3.5rem, 9.5vw, 11rem); letter-spacing: -.04em; line-height: .9; color: #fff; }
+    .hero-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(2.6rem, 7vw, 7.6rem); letter-spacing: -.04em; line-height: .9; color: #fff; }
     .hero-title span { color: var(--red); }
     .hero-meta-row { display: flex; align-items: flex-start; gap: 64px; margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border); flex-wrap: wrap; }
     .hero-meta-label { font-family: var(--mono); font-size: .58rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
-    .hero-meta-val { font-family: 'Syne', sans-serif; font-weight: 600; font-size: .95rem; color: #fff; }
-    .hero-summary { max-width: 540px; font-family: 'DM Sans', sans-serif; font-size: 1.05rem; line-height: 1.75; color: var(--white-70); font-weight: 300; }
+    .hero-meta-val { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 600; font-size: .95rem; color: #fff; }
+    .hero-summary { max-width: 540px; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: 1.05rem; line-height: 1.75; color: var(--white-70); font-weight: 300; }
 
     /* ── Hero visual ── */
     .hero-visual-wrap { position: relative; margin-top: 72px; border-radius: 12px; overflow: hidden; }
     .hero-visual-wrap::before { content: ''; position: absolute; inset: -60px; background: radial-gradient(ellipse 70% 50% at 50% 60%, rgba(214,40,40,.14), transparent 70%); z-index: 0; pointer-events: none; }
     .hero-visual { position: relative; z-index: 1; border-radius: 12px; border: 1px solid var(--red-border); aspect-ratio: 21/9; background: linear-gradient(135deg,#0a0a0a 0%,#141414 40%,#1c1416 70%,#2a0e10 100%); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .hero-visual .watermark { position: absolute; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(6rem,16vw,18rem); letter-spacing: .04em; color: rgba(255,255,255,.035); user-select: none; line-height: 1; white-space: nowrap; }
+    .hero-visual .watermark { position: absolute; font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(4rem,12vw,13rem); letter-spacing: .04em; color: rgba(255,255,255,.035); user-select: none; line-height: 1; white-space: nowrap; }
 
     /* ── Overview ── */
     .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; padding: 100px 0; }
-    .overview-left h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 4.5vw, 4rem); letter-spacing: -.04em; line-height: 1.02; margin: 20px 0 28px; }
-    .overview-left p { font-family: 'DM Sans', sans-serif; font-size: .95rem; line-height: 1.85; color: var(--white-70); }
+    .overview-left h2 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(1.9rem, 3.8vw, 3.2rem); letter-spacing: -.04em; line-height: 1.02; margin: 20px 0 28px; }
+    .overview-left p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .95rem; line-height: 1.85; color: var(--white-70); }
     .overview-left p + p { margin-top: 16px; }
     .overview-facts { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: 10px; overflow: hidden; }
     .fact-row { background: #0a0a0a; padding: 24px 28px; display: flex; justify-content: space-between; align-items: baseline; gap: 20px; transition: background .2s; }
     .fact-row:hover { background: rgba(214,40,40,.04); }
     .fact-label { font-family: var(--mono); font-size: .58rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; flex-shrink: 0; }
-    .fact-val { font-family: 'Syne', sans-serif; font-weight: 600; font-size: .95rem; color: #fff; text-align: right; }
+    .fact-val { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 600; font-size: .95rem; color: #fff; text-align: right; }
 
     /* ── Two col challenge ── */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
     .col-block { background: #000; padding: 72px 56px; }
-    .col-block h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.6rem,3vw,2.6rem); letter-spacing: -.04em; line-height: 1.05; margin: 20px 0 20px; }
-    .col-block p { font-family: 'DM Sans', sans-serif; font-size: .9rem; line-height: 1.85; color: var(--white-70); }
+    .col-block h3 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(1.6rem,3vw,2.6rem); letter-spacing: -.04em; line-height: 1.05; margin: 20px 0 20px; }
+    .col-block p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .9rem; line-height: 1.85; color: var(--white-70); }
     .col-block p + p { margin-top: 14px; }
     .challenge-list { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-top: 8px; }
-    .challenge-list li { font-family: 'DM Sans', sans-serif; font-size: .92rem; line-height: 1.7; color: var(--white-70); display: flex; gap: 14px; align-items: flex-start; }
+    .challenge-list li { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .92rem; line-height: 1.7; color: var(--white-70); display: flex; gap: 14px; align-items: flex-start; }
     .challenge-list li::before { content: ''; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%; background: var(--red); margin-top: 8px; }
 
     /* ── Contribution cards ── */
@@ -121,8 +121,8 @@
     .contrib-card { background: #050505; padding: 48px 44px; transition: background .3s; }
     .contrib-card:hover { background: rgba(214,40,40,.03); }
     .contrib-num { font-family: var(--mono); font-size: .58rem; color: var(--red); letter-spacing: .1em; margin-bottom: 22px; }
-    .contrib-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -.03em; margin-bottom: 12px; }
-    .contrib-body { font-family: 'DM Sans', sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-50); }
+    .contrib-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: 1.5rem; letter-spacing: -.03em; margin-bottom: 12px; }
+    .contrib-body { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-50); }
 
     /* ── Selected screens ── */
     .screen-block { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid var(--border); }
@@ -131,10 +131,10 @@
     .screen-visual { padding: 64px 56px; border-right: 1px solid var(--border); display: flex; align-items: center; justify-content: center; background: #030303; }
     .screen-text { padding: 64px 56px; display: flex; flex-direction: column; justify-content: center; }
     .screen-text .scr-num { font-family: var(--mono); font-size: .58rem; color: var(--red); letter-spacing: .1em; margin-bottom: 16px; }
-    .screen-text h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.5rem,3vw,2.4rem); letter-spacing: -.03em; line-height: 1.05; margin-bottom: 20px; }
+    .screen-text h3 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(1.5rem,3vw,2.4rem); letter-spacing: -.03em; line-height: 1.05; margin-bottom: 20px; }
     .scr-row { margin-top: 18px; }
     .scr-row-label { font-family: var(--mono); font-size: .56rem; color: var(--red); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
-    .scr-row-body { font-family: 'DM Sans', sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-70); }
+    .scr-row-body { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-70); }
 
     /* Screen placeholder frame (swap with real images later) */
     .device-frame { width: 100%; max-width: 300px; aspect-ratio: 9/16; background: #0c0c0c; border: 1px solid rgba(214,40,40,.18); border-radius: 22px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.7), 0 0 60px rgba(214,40,40,.06); position: relative; }
@@ -154,14 +154,14 @@
     .principle { background: #000; padding: 52px 48px; transition: background .3s; }
     .principle:hover { background: rgba(214,40,40,.03); }
     .principle-idx { font-family: var(--mono); font-size: .58rem; color: var(--white-20); letter-spacing: .1em; margin-bottom: 20px; }
-    .principle h3 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: -.03em; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+    .principle h3 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: 1.4rem; letter-spacing: -.03em; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
     .principle h3::before { content: ''; width: 4px; height: 18px; background: var(--red); border-radius: 2px; flex-shrink: 0; }
-    .principle p { font-family: 'DM Sans', sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-50); }
+    .principle p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .88rem; line-height: 1.75; color: var(--white-50); }
 
     /* ── Reflection ── */
     .reflection-inner { padding: 110px 0; max-width: 860px; }
-    .reflection-inner h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem,4vw,3.5rem); letter-spacing: -.04em; line-height: 1; margin: 20px 0 32px; }
-    .reflection-inner p { font-family: 'DM Sans', sans-serif; font-size: 1.02rem; line-height: 1.9; color: var(--white-70); font-weight: 300; }
+    .reflection-inner h2 { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(1.7rem,3.4vw,2.9rem); letter-spacing: -.04em; line-height: 1; margin: 20px 0 32px; }
+    .reflection-inner p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: 1.02rem; line-height: 1.9; color: var(--white-70); font-weight: 300; }
     .reflection-inner p + p { margin-top: 20px; }
     .reflection-inner em { font-style: normal; color: var(--red); }
 
@@ -169,19 +169,19 @@
     .nda { background: #050505; }
     .nda-inner { padding: 56px 0; display: flex; gap: 20px; align-items: flex-start; max-width: 860px; }
     .nda-icon { width: 38px; height: 38px; border: 1px solid var(--red-border); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .nda-text { font-family: 'DM Sans', sans-serif; font-size: .9rem; line-height: 1.8; color: var(--white-50); font-style: italic; }
+    .nda-text { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .9rem; line-height: 1.8; color: var(--white-50); font-style: italic; }
 
     /* ── Next project ── */
     .next-section { padding: 120px 0; position: relative; z-index: 1; }
     .next-inner { display: flex; justify-content: space-between; align-items: flex-end; }
     .next-label { font-family: var(--mono); font-size: .6rem; color: var(--white-50); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
-    .next-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem,6vw,6rem); letter-spacing: -.05em; line-height: .88; }
-    .next-btn { font-family: 'Syne', sans-serif; font-weight: 700; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; padding: 16px 32px; border: 1px solid var(--red-border); color: var(--red); text-decoration: none; border-radius: 4px; transition: background .2s, border-color .2s, color .2s; white-space: nowrap; }
+    .next-title { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: clamp(2rem,5vw,4.6rem); letter-spacing: -.05em; line-height: .88; }
+    .next-btn { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; padding: 16px 32px; border: 1px solid var(--red-border); color: var(--red); text-decoration: none; border-radius: 4px; transition: background .2s, border-color .2s, color .2s; white-space: nowrap; }
     .next-btn:hover { background: var(--red); color: #fff; border-color: var(--red); }
 
     /* ── Footer ── */
     .cs-footer { border-top: 1px solid var(--border); padding: 32px 40px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
-    .cs-footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; text-decoration: none; }
+    .cs-footer-logo { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 800; font-size: 1.05rem; color: #fff; text-decoration: none; }
     .cs-footer-links { display: flex; gap: 24px; }
     .cs-footer-links a { font-family: var(--mono); font-size: .6rem; color: var(--white-50); text-decoration: none; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
     .cs-footer-links a:hover { color: #fff; }
@@ -266,8 +266,8 @@
             <!-- wide device hint -->
             <div style="width:300px;height:188px;background:rgba(255,255,255,.03);border:1px solid rgba(214,40,40,.2);border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 0 48px rgba(214,40,40,.08);">
               <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="font-family:'DM Mono',monospace;font-size:.5rem;color:rgba(255,255,255,.55);letter-spacing:.18em;">PORSCHE</span>
-                <span style="font-family:'DM Mono',monospace;font-size:.42rem;color:rgba(255,255,255,.3);letter-spacing:.1em;">SELL DIRECT</span>
+                <span style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.5rem;color:rgba(255,255,255,.55);letter-spacing:.18em;">PORSCHE</span>
+                <span style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.42rem;color:rgba(255,255,255,.3);letter-spacing:.1em;">SELL DIRECT</span>
               </div>
               <div style="flex:1;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:5px;display:flex;align-items:center;justify-content:center;">
                 <div style="width:120px;height:56px;background:rgba(255,255,255,.04);border-radius:4px;"></div>
@@ -329,7 +329,7 @@
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:56px;">
       <div class="section-label reveal">03 — My Contribution</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">Where I made<br/>the difference.</h2>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">Where I made<br/>the difference.</h2>
     </div>
     <div class="contrib-grid reveal">
       <div class="contrib-card">
@@ -359,8 +359,8 @@
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:56px;">
       <div class="section-label reveal">04 — Selected Screens</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">Selected screens.</h2>
-      <p class="reveal" style="font-family:'DM Sans',sans-serif;font-size:.92rem;color:var(--white-50);max-width:540px;line-height:1.75;transition-delay:.1s;">A focused selection of the work, presented as showcase pieces. Each screen reflects a specific UX problem and the improvements introduced to solve it.</p>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 12px;">Selected screens.</h2>
+      <p class="reveal" style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.92rem;color:var(--white-50);max-width:540px;line-height:1.75;transition-delay:.1s;">A focused selection of the work, presented as showcase pieces. Each screen reflects a specific UX problem and the improvements introduced to solve it.</p>
     </div>
 
     <!-- Screen 1 — Listing creation -->
@@ -442,7 +442,7 @@
       <div class="screen-visual">
         <div class="device-frame wide">
           <div class="device-placeholder">
-            <div class="ph-bar"><span class="ph-logo">PORSCHE</span><span style="margin-left:auto;font-family:'DM Mono',monospace;font-size:.4rem;color:rgba(214,40,40,.7);letter-spacing:.1em;">OFFER RECEIVED</span></div>
+            <div class="ph-bar"><span class="ph-logo">PORSCHE</span><span style="margin-left:auto;font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.4rem;color:rgba(214,40,40,.7);letter-spacing:.1em;">OFFER RECEIVED</span></div>
             <div class="ph-body" style="flex-direction:row;gap:12px;">
               <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
                 <div class="ph-block" style="height:60px;"></div>
@@ -482,7 +482,7 @@
   <section class="section">
     <div class="container" style="padding-top:80px; padding-bottom:56px;">
       <div class="section-label reveal">05 — Key Design Principles</div>
-      <h2 class="reveal" style="font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">What guided<br/>every decision.</h2>
+      <h2 class="reveal" style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:clamp(1.7rem,3.4vw,2.9rem);letter-spacing:-.04em;line-height:1;margin:20px 0 0;">What guided<br/>every decision.</h2>
     </div>
     <div class="principles-grid reveal">
       <div class="principle">
