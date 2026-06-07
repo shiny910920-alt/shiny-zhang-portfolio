@@ -7,7 +7,8 @@
     { "source": "/zed-picks",          "destination": "/zed-picks.html"           },
     { "source": "/porsche-sell-direct","destination": "/porsche-sell-direct.html" },
     { "source": "/halfmoon",           "destination": "/halfmoon.html"            },
-    { "source": "/shping",             "destination": "/shping.html"              }
+    { "source": "/shping",             "destination": "/shping.html"              },
+    { "source": "/bnd",                "destination": "/bnd.html"                 }
   ],
   "headers": [
     {
