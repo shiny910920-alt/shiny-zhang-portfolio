@@ -88,6 +88,15 @@
     .frame { position: relative; border-radius: 12px; overflow: hidden; }
     .glow-wrap { position: relative; }
     .glow-wrap > * { position: relative; z-index: 1; }
+    /* Staging surfaces — let transparent 3D mockups float on soft ground */
+    .stage { border-radius: 20px; padding: clamp(28px,5vw,80px); display: flex; align-items: center; justify-content: center; }
+    .stage--soft { background: var(--bg-soft); }
+    .stage--warm { background: linear-gradient(155deg, #FFF3EC 0%, #FBEAE2 100%); }
+    .stage .shot { max-height: 760px; width: auto; max-width: 100%; }
+    .stage--full .shot { width: 100%; height: auto; }
+    .cap-row { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline; margin-top: 22px; }
+    .cap-k { font-family: var(--mono); font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+    .cap-t { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .92rem; color: var(--w50); }
 
     /* ── Goal chips ── */
     .goal-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
@@ -255,8 +264,8 @@
   <!-- ══ HERO IMAGE ══ -->
   <section class="section" style="padding:0 0 90px;">
     <div class="container-wide glow-wrap reveal-scale">
-      <div class="frame">
-        <img class="shot" src="public/projects/b%26d/main-cover.webp" alt="B&D Smart Home — onboarding and the Main Garage control experience with a 3D home" loading="eager" />
+      <div class="stage stage--soft">
+        <img class="shot" src="public/projects/b%26d/01-hero.webp" alt="B&D Smart Home — in-hand control of the Main Garage, built around a 3D representation of the home" loading="eager" />
       </div>
     </div>
   </section>
@@ -271,11 +280,12 @@
       </div>
     </div>
 
-    <div class="container-wide reveal-scale" style="padding-bottom:48px;">
-      <div class="frame"><img class="shot" src="public/projects/b%26d/cover.webp" alt="B&D Smart Home — connected garage control on the brand's warm orange surface" loading="lazy" /></div>
+    <div class="container-wide reveal-scale" style="padding-bottom:24px;">
+      <div class="stage stage--soft stage--full"><img class="shot" src="public/projects/b%26d/02-current-bd.webp" alt="B&D's existing app — a dark, device-led experience built around individual controls" loading="lazy" /></div>
+      <div class="cap-row container"><span class="cap-k">Before</span><span class="cap-t">The existing B&D app — capable, but device-led and visually dated.</span></div>
     </div>
 
-    <div class="container reveal" style="padding-bottom:90px;">
+    <div class="container reveal" style="padding:48px 40px 90px;">
       <p style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:clamp(1.2rem,2.4vw,1.7rem);letter-spacing:-.02em;line-height:1.3;color:var(--ink);max-width:18ch;">The challenge wasn't redesigning a garage door app. It was changing how people <span style="color:var(--accent);">perceive the brand.</span></p>
       <div class="goal-row">
         <div class="goal-chip">Modern</div>
@@ -288,10 +298,13 @@
 
   <!-- ══ 02 · DESIGN INSIGHT ══ -->
   <section class="section">
-    <div class="container statement reveal">
+    <div class="container statement reveal" style="padding:110px 0 56px;">
       <div class="statement-k">02 — Design insight</div>
       <div class="statement-q">Users don't want to control their garage.<br/>They want confidence their home is <span class="em">secure.</span></div>
-      <p class="statement-sub">This insight became the foundation of the redesign. Rather than improving a remote control, the experience was reframed around home ownership, security, and peace of mind.</p>
+      <p class="statement-sub">This insight reframed the experience around home ownership, security, and peace of mind — not a remote control.</p>
+    </div>
+    <div class="container-wide reveal-scale" style="padding-bottom:90px;">
+      <div class="frame"><img class="shot" src="public/projects/b%26d/03-design-insight.webp" alt="B&D Smart Home — home ownership and peace of mind: family, the physical Controll-A-Door opener, and the connected app" loading="lazy" /></div>
     </div>
   </section>
 
@@ -304,23 +317,23 @@
       </div>
     </div>
 
-    <div class="container reveal" style="padding-bottom:48px;">
-      <div class="ba-grid">
-        <div class="ba-col">
-          <div class="ba-tag">Before</div>
-          <div class="ba-h">Device-centric</div>
-          <div class="ba-b">A remote control in app form. The product centred on a single device and a single action — open and close.</div>
+    <div class="container reveal" style="padding-bottom:40px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:760px;">
+        <div>
+          <div class="cap-k" style="color:var(--w30);">Before</div>
+          <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;margin:8px 0 6px;color:var(--ink);">Device-centric</div>
+          <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.9rem;line-height:1.6;color:var(--w50);">A remote control in app form — one device, one action.</div>
         </div>
-        <div class="ba-col after">
-          <div class="ba-tag">After</div>
-          <div class="ba-h">Home-centric</div>
-          <div class="ba-b">A connected home you own. Navigation, hierarchy, and emotion organised around the property — not the hardware.</div>
+        <div>
+          <div class="cap-k">After</div>
+          <div style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-.02em;margin:8px 0 6px;color:var(--accent);">Home-centric</div>
+          <div style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:.9rem;line-height:1.6;color:var(--w50);">A connected home you own — organised around the property, not the hardware.</div>
         </div>
       </div>
     </div>
 
-    <div class="container-wide reveal-scale" style="padding-bottom:48px;">
-      <div class="frame"><img class="shot" src="public/projects/b%26d/main-cover.webp" alt="B&D Smart Home — a property-focused experience built around a 3D representation of the home" loading="lazy" /></div>
+    <div class="container-wide reveal-scale" style="padding-bottom:36px;">
+      <div class="frame"><img class="shot" src="public/projects/b%26d/05-visual-evolution.webp" alt="B&D Smart Home — the redesigned home-centric experience: connection, the Main Garage with a 3D home, activity, and access control" loading="lazy" /></div>
     </div>
 
     <div class="container reveal" style="padding-bottom:90px;">
@@ -335,23 +348,23 @@
 
   <!-- ══ 04 · DESIGNING AROUND REAL-WORLD BEHAVIOUR ══ -->
   <section class="section">
-    <div class="container" style="padding:100px 40px;">
-      <div class="feature-row reveal">
-        <div class="fr-media">
-          <div class="frame"><img class="shot" src="public/projects/b%26d/cover.webp" alt="B&D Smart Home — thumb-friendly one-handed garage control" loading="lazy" /></div>
-        </div>
-        <div class="fr-content">
-          <div class="fr-label">04 — Real-world behaviour</div>
-          <h3 class="fr-title">Built for one-handed use.</h3>
-          <p class="fr-body">People reach for this app in the car, in the driveway, mid-task. The interaction model was rebuilt around how the product is actually used — fast, glanceable, one thumb.</p>
-          <ul class="fr-list">
-            <li>Larger thumb-friendly controls</li>
-            <li>Vertical interaction pattern</li>
-            <li>Faster access while driving</li>
-            <li>Reduced interaction effort</li>
-          </ul>
-        </div>
+    <div class="container">
+      <div class="sec-head reveal">
+        <div class="section-label">04 — Real-world behaviour</div>
+        <h2>Built for one-handed use.</h2>
+        <p>Reached for in the car, in the driveway, mid-task — fast, glanceable, one thumb.</p>
       </div>
+    </div>
+    <div class="container-wide reveal-scale" style="padding-bottom:36px;">
+      <div class="stage stage--soft stage--full"><img class="shot" src="public/projects/b%26d/07-emotional-feedback.webp" alt="B&D Smart Home — large thumb-friendly garage controls with clear open and closed states" loading="lazy" /></div>
+    </div>
+    <div class="container reveal" style="padding-bottom:90px;">
+      <ul class="kp-list">
+        <li>Larger thumb-friendly controls</li>
+        <li>Vertical interaction pattern</li>
+        <li>Faster access while driving</li>
+        <li>Reduced interaction effort</li>
+      </ul>
     </div>
   </section>
 
@@ -365,23 +378,14 @@
       </div>
     </div>
 
+    <div class="container-wide reveal-scale" style="padding-bottom:28px;">
+      <div class="stage stage--soft stage--full"><img class="shot" src="public/projects/b%26d/04-dynamic-controls.webp" alt="B&D Smart Home — the control adapts to the door's real state: closed and locked, opening, and open" loading="lazy" /></div>
+    </div>
     <div class="container reveal" style="padding-bottom:90px;">
-      <div class="flow">
-        <div class="flow-step">
-          <div class="flow-states"><span class="flow-pill">Closed</span><span class="flow-arrow">→</span><span class="flow-pill live">Open</span></div>
-          <div class="flow-action">Open</div>
-          <div class="flow-desc">A resting closed state offers a single, confident action: open the door.</div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-states"><span class="flow-pill live">Opening</span><span class="flow-arrow">→</span><span class="flow-pill">Stop</span></div>
-          <div class="flow-action">Stop</div>
-          <div class="flow-desc">Mid-movement, the control becomes a stop — matching the door's live behaviour.</div>
-        </div>
-        <div class="flow-step">
-          <div class="flow-states"><span class="flow-pill">Open</span><span class="flow-arrow">→</span><span class="flow-pill live">Close</span></div>
-          <div class="flow-action">Close</div>
-          <div class="flow-desc">Once open, the system resolves to the inverse — close — with no menus in between.</div>
-        </div>
+      <div class="cap-row" style="gap:14px 28px;">
+        <span style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.92rem;color:var(--ink);">Closed → <span style="color:var(--accent);">Open</span></span>
+        <span style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.92rem;color:var(--ink);">Opening → <span style="color:var(--accent);">Stop</span></span>
+        <span style="font-family:'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:.92rem;color:var(--ink);">Open → <span style="color:var(--accent);">Close</span></span>
       </div>
     </div>
   </section>
@@ -396,18 +400,12 @@
       </div>
     </div>
 
-    <div class="container-wide reveal-scale" style="padding-bottom:40px;">
-      <div class="moment">
-        <img class="moment-img" src="public/projects/b%26d/cover.webp" alt="B&D Smart Home — the welcome-home moment, celebrating arrival rather than a status change" loading="lazy" />
-        <div class="moment-cap">
-          <span class="mc-k">The open state</span>
-          <span class="mc-t">From a status change → to a moment of arrival 🐾</span>
-        </div>
-      </div>
+    <div class="container-wide reveal-scale" style="padding-bottom:32px;">
+      <div class="stage stage--warm stage--full"><img class="shot" src="public/projects/b%26d/08-welcome-home.webp" alt="B&D Smart Home — the empty open state, and the same moment given meaning with a 3D dog waiting home" loading="lazy" /></div>
+      <div class="cap-row container"><span class="cap-k">Empty state → arrival</span><span class="cap-t">A 3D dog turns a technically-correct open state into a moment worth feeling.</span></div>
     </div>
 
-    <div class="container reveal" style="padding-bottom:90px;">
-      <p style="font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:1rem;line-height:1.8;color:var(--w70);max-width:620px;">Instead of showing a status change, the design celebrates the moment users arrive home — a <strong style="color:var(--ink);font-weight:600;">3D dog</strong> waiting in the open doorway turns an empty state into a feeling.</p>
+    <div class="container reveal" style="padding:24px 40px 90px;">
       <div class="outcome-block">
         <div class="ob-k">Outcome</div>
         <p>Stakeholders immediately embraced the concept and identified future opportunities for personalisation — including pets, family avatars, and custom home scenes.</p>
@@ -472,51 +470,17 @@
       </div>
     </div>
 
+    <div class="container-wide reveal-scale" style="padding-bottom:28px;">
+      <div class="frame"><img class="shot" src="public/projects/b%26d/06-design-system.webp" alt="B&D Smart Home design system — colour ramps, typography scale, control components, status and permission patterns, and 3D home illustrations" loading="lazy" /></div>
+    </div>
     <div class="container reveal" style="padding-bottom:90px;">
-      <div class="ds-grid">
-        <div class="ds-cell">
-          <div class="ds-k">FOUNDATION</div>
-          <ul class="ds-list">
-            <li>Colour</li>
-            <li>Typography</li>
-            <li>Spacing</li>
-          </ul>
-          <div class="ds-tokens">
-            <div class="ds-token" style="background:#FF5A36;"></div>
-            <div class="ds-token" style="background:#FF7A45;"></div>
-            <div class="ds-token" style="background:#FFE0D2;"></div>
-            <div class="ds-token" style="background:#F2F1EE;"></div>
-          </div>
-          <div class="type-scale">
-            <span style="font-size:1.5rem;">Aa</span>
-          </div>
-        </div>
-        <div class="ds-cell">
-          <div class="ds-k">COMPONENTS</div>
-          <ul class="ds-list">
-            <li>Cards</li>
-            <li>Controls</li>
-            <li>Status patterns</li>
-            <li>Permissions</li>
-          </ul>
-          <div class="ds-tokens" style="margin-top:24px;">
-            <div class="ds-token" style="background:#fff;border:1px solid var(--border);"></div>
-            <div class="ds-token" style="background:var(--accent);"></div>
-            <div class="ds-token" style="background:var(--bg-soft2);border:1px solid var(--border-soft);"></div>
-          </div>
-        </div>
-        <div class="ds-cell">
-          <div class="ds-k">CUSTOM ASSETS</div>
-          <ul class="ds-list">
-            <li>3D homes</li>
-            <li>Empty states</li>
-            <li>Onboarding visuals</li>
-          </ul>
-          <div class="ds-tokens" style="margin-top:24px;">
-            <div class="ds-token" style="background:linear-gradient(135deg,#FF5A36,#FFB07A);"></div>
-            <div class="ds-token" style="background:linear-gradient(135deg,#EDEDED,#fff);border:1px solid var(--border-soft);"></div>
-          </div>
-        </div>
+      <div class="cap-row" style="gap:10px;">
+        <span class="goal-chip" style="font-size:.74rem;padding:8px 14px;">Colour</span>
+        <span class="goal-chip" style="font-size:.74rem;padding:8px 14px;">Typography</span>
+        <span class="goal-chip" style="font-size:.74rem;padding:8px 14px;">Components</span>
+        <span class="goal-chip" style="font-size:.74rem;padding:8px 14px;">Status indicators</span>
+        <span class="goal-chip" style="font-size:.74rem;padding:8px 14px;">Permission patterns</span>
+        <span class="goal-chip" style="font-size:.74rem;padding:8px 14px;">3D illustrations</span>
       </div>
     </div>
   </section>
@@ -528,6 +492,9 @@
         <div class="section-label">09 — Outcome</div>
         <h2>What changed.</h2>
       </div>
+    </div>
+    <div class="container-wide reveal-scale" style="padding-bottom:48px;">
+      <div class="stage stage--warm stage--full"><img class="shot" src="public/projects/b%26d/09-outcome.webp" alt="B&D Smart Home — the final connected-home ecosystem across multiple homes and devices" loading="lazy" /></div>
     </div>
     <div class="outcomes reveal">
       <div class="outcome">
@@ -558,6 +525,9 @@
         <p>This project reinforced that meaningful product experiences come from understanding the <em>context</em> behind user actions — not just the actions themselves.</p>
         <p>By shifting the experience from garage control to home ownership, the product became more personal, memorable, and future-focused.</p>
       </div>
+    </div>
+    <div class="container-wide reveal-scale" style="padding-bottom:96px;">
+      <div class="stage stage--soft stage--full"><img class="shot" src="public/projects/b%26d/10-reflection.webp" alt="B&D Smart Home — the breadth of the redesigned product: onboarding, permissions, pairing, security and access management" loading="lazy" /></div>
     </div>
   </section>
 
