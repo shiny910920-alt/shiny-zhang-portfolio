@@ -139,7 +139,6 @@
     /* ── Hero image ── */
     .hero-image-wrap {
       position: relative; margin-top: 72px;
-      border-radius: 12px; overflow: hidden;
     }
     .hero-image-wrap::before {
       content: ''; position: absolute; inset: -60px;
@@ -147,8 +146,7 @@
       z-index: 0; pointer-events: none;
     }
     .hero-image-wrap img {
-      width: 100%; display: block; position: relative; z-index: 1;
-      border-radius: 12px; border: 1px solid var(--green-border);
+      width: 100%; height: auto; display: block; position: relative; z-index: 1; background: transparent;
     }
 
     /* ── Overview ── */
@@ -239,7 +237,8 @@
     .type-label { font-family: var(--mono); font-size: .58rem; color: var(--white-50); letter-spacing: .08em; margin-bottom: 16px; }
 
     /* ── Real-asset showcase helpers ── */
-    .zed-shot { width: 100%; display: block; border-radius: 10px; border: 1px solid var(--border); }
+    /* Transparent ZED art floats on the page — no box, border, fill, or clip */
+    .zed-shot { width: 100%; height: auto; display: block; background: transparent; }
     .zed-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: center; }
     .zed-grid-2.tall { align-items: stretch; }
     .zed-stack { display: flex; flex-direction: column; gap: 24px; }
@@ -708,7 +707,7 @@
     <!-- Full-width overview of screens -->
     <div class="full-image-section reveal">
       <div class="container-wide">
-        <div class="full-image-wrap" style="border-radius:12px;overflow:hidden;border:1px solid var(--green-border);">
+        <div class="full-image-wrap">
           <img src="public/projects/zed-picks/feature-page.webp" alt="ZED Picks — feature page overview" style="width:100%;display:block;" loading="lazy" />
         </div>
       </div>
@@ -862,7 +861,7 @@
     <!-- Banner — full width -->
     <div class="full-image-section reveal">
       <div class="container-wide">
-        <div class="full-image-wrap" style="border-radius:12px;overflow:hidden;border:1px solid var(--green-border);">
+        <div class="full-image-wrap">
           <img src="public/projects/zed-picks/banner.webp" alt="ZED Picks — campaign banner" style="width:100%;display:block;" loading="lazy" />
         </div>
       </div>
