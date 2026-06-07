@@ -83,17 +83,18 @@
     .hero-meta-val { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 600; font-size: .9rem; color: var(--ink); }
     .hero-summary { max-width: 440px; font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .96rem; line-height: 1.7; color: var(--w50); font-weight: 400; }
 
-    /* ── Image system · flat editorial ── */
-    .shot { width: 100%; display: block; }
-    .frame { position: relative; border-radius: 12px; overflow: hidden; }
+    /* ── Image system · editorial · frameless · never cropped ── */
+    /* Images sit naturally on the page: full width, original proportions, no card/border/panel/crop. */
+    .shot { width: 100%; height: auto; display: block; }
+    /* .frame / .stage* are now transparent pass-throughs — kept only so existing markup needs no change. */
+    .frame, .stage { position: relative; background: none; border: 0; border-radius: 0; padding: 0; overflow: visible; box-shadow: none; display: block; }
+    .stage--soft, .stage--warm { background: none; }
+    .stage .shot, .stage--full .shot { width: 100%; height: auto; max-height: none; max-width: 100%; }
     .glow-wrap { position: relative; }
     .glow-wrap > * { position: relative; z-index: 1; }
-    /* Staging surfaces — let transparent 3D mockups float on soft ground */
-    .stage { border-radius: 20px; padding: clamp(28px,5vw,80px); display: flex; align-items: center; justify-content: center; }
-    .stage--soft { background: var(--bg-soft); }
-    .stage--warm { background: linear-gradient(155deg, #FFF3EC 0%, #FBEAE2 100%); }
-    .stage .shot { max-height: 760px; width: auto; max-width: 100%; }
-    .stage--full .shot { width: 100%; height: auto; }
+    /* Wider container for hero image moments (3D house, welcome-home) */
+    .container-bleed { max-width: 1560px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 600px) { .container-bleed { padding: 0 16px; } }
     .cap-row { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: baseline; margin-top: 22px; }
     .cap-k { font-family: var(--mono); font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
     .cap-t { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .92rem; color: var(--w50); }
@@ -150,13 +151,8 @@
     .flow-desc { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .82rem; color: var(--w50); line-height: 1.6; }
     @media (max-width:760px){ .flow { grid-template-columns: 1fr; } }
 
-    /* ── Welcome-home moment ── */
-    .moment { position: relative; border-radius: 18px; overflow: hidden; background: linear-gradient(120deg, #FF5A36 0%, #FF8348 55%, #FFB07A 100%); }
-    .moment-img { width: 100%; display: block; }
-    .moment-cap { padding: 30px 40px; display: flex; flex-wrap: wrap; gap: 24px; align-items: baseline; }
-    .moment-cap .mc-k { font-family: var(--mono); font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.85); }
-    .moment-cap .mc-t { font-family: 'PP Neue Montreal','Inter','Helvetica Neue',Arial,sans-serif; font-weight: 700; font-size: 1rem; color: #fff; }
-    .outcome-block { margin-top: 28px; border: 1px solid var(--accent-border); background: var(--accent-dim); border-radius: 14px; padding: 28px 32px; }
+    /* ── Welcome-home outcome note (frameless, just a tinted left rule) ── */
+    .outcome-block { margin-top: 28px; border-left: 2px solid var(--accent); padding: 6px 0 6px 24px; }
     .outcome-block .ob-k { font-family: var(--mono); font-size: .56rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
     .outcome-block p { font-family: 'Inter','Helvetica Neue',Arial,sans-serif; font-size: .98rem; line-height: 1.75; color: var(--w70); max-width: 720px; }
 
@@ -332,8 +328,8 @@
       </div>
     </div>
 
-    <div class="container-wide reveal-scale" style="padding-bottom:36px;">
-      <div class="frame"><img class="shot" src="public/projects/b%26d/05-visual-evolution.webp" alt="B&D Smart Home — the redesigned home-centric experience: connection, the Main Garage with a 3D home, activity, and access control" loading="lazy" /></div>
+    <div class="container-bleed reveal-scale" style="padding:24px 0 56px;">
+      <img class="shot" src="public/projects/b%26d/05-visual-evolution.webp" alt="B&D Smart Home — the redesigned home-centric experience: connection, the Main Garage with a 3D home, activity, and access control" loading="lazy" />
     </div>
 
     <div class="container reveal" style="padding-bottom:90px;">
@@ -400,9 +396,9 @@
       </div>
     </div>
 
-    <div class="container-wide reveal-scale" style="padding-bottom:32px;">
-      <div class="stage stage--warm stage--full"><img class="shot" src="public/projects/b%26d/08-welcome-home.webp" alt="B&D Smart Home — the empty open state, and the same moment given meaning with a 3D dog waiting home" loading="lazy" /></div>
-      <div class="cap-row container"><span class="cap-k">Empty state → arrival</span><span class="cap-t">A 3D dog turns a technically-correct open state into a moment worth feeling.</span></div>
+    <div class="container-bleed reveal-scale" style="padding:32px 0 40px;">
+      <img class="shot" src="public/projects/b%26d/08-welcome-home.webp" alt="B&D Smart Home — the empty open state, and the same moment given meaning with a 3D dog waiting home" loading="lazy" />
+      <div class="cap-row" style="max-width:1140px;margin:24px auto 0;padding:0 16px;"><span class="cap-k">Empty state → arrival</span><span class="cap-t">A 3D dog turns a technically-correct open state into a moment worth feeling.</span></div>
     </div>
 
     <div class="container reveal" style="padding:24px 40px 90px;">
